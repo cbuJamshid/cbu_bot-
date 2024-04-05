@@ -39,35 +39,41 @@ def bot_logic():
     # Handler for inline keyboard button clicks
     @bot.callback_query_handler(func=lambda call: True)
     def handle_callback_query(call):
-        ChatId = call.message.chat.id
-        user = select_user(ChatId)
+        chat_id = call.message.chat.id
+        user = select_user(chat_id)
         current_question_order = user[0][3]
         lang = user[0][2]
         # is_survey_finished = user[0][3]
         try:    
             if call.data in ["ru", "uz_latin", "uz_kiril"]:
-                user = select_user(ChatId)
+                user = select_user(chat_id)
                 if user:
-                    increment_order_num(ChatId, 0)
+                    increment_order_num(chat_id, 0)
                 else:
-                    new_user(ChatId)
-                set_language(ChatId, call.data)
-                send_question(ChatId)
+                    new_user(chat_id)
+                set_language(chat_id, call.data)
+                send_question(chat_id)
 
             if "_" in call.data:
                 question_idx, answer, select = call.data.split('_')
                 question_id = int(question_idx)
-                print(question_id)
+                print(question_id, "-", current_question_order)
+
+                # Here we will write code when survey end is done
                 if question_id > 51:
                     print("Yes")
-                    return send_survey_finish_message(ChatId, lang)
+                    return send_survey_finish_message(chat_id, lang)
 
+                # if current question is pressed, send next question
                 if current_question_order == question_id:
-                    increment_order_num(ChatId, current_question_order + 1)
-                    return send_question(ChatId)
+                    increment_order_num(chat_id, current_question_order + 1)
+                    return send_question(chat_id)
+                # else, edit question response
+                else:
+                    bot.send_message(chat_id, "Editing question response...")
 
             print(f"{call.data} is not recognized")
-            # bot.send_message(ChatId, call.data)
+            # bot.send_message(chat_id, call.data)
         except Exception as ex:
             print(f"Error in callback data handling. {ex}")
 
