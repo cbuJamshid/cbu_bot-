@@ -70,7 +70,7 @@ def bot_logic():
                     return send_question(chat_id)
                 # else, edit question response
                 else:
-                    bot.send_message(chat_id, "Editing question response...")
+                    bot.send_message(chat_id, "Editing question response..")
 
             print(f"{call.data} is not recognized")
             # bot.send_message(chat_id, call.data)
