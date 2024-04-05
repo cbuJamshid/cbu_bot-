@@ -33,17 +33,9 @@ def bot_logic():
     # start command
     @bot.message_handler(commands=['start', 'survey'])
     def start(message):
-        # creating new user in database
-        UserId = message.from_user.id
-        user = select_user(UserId)
-        if user:
-            increment_order_num(UserId, 0)
-        else:
-            new_user(UserId)
         # sending welcome message
         bot.send_message(message.chat.id, f"<b>{message.from_user.first_name},</b> Аҳоли қарз юкини аниқлаш бўйича сўровномага хуш келибсиз!\nИлтимос, тилни танланг<b>\n\n{message.from_user.first_name},</b> Добро пожаловать в опросник по определению долговой нагрузки населения!\nПожалуйста, выберите язык", parse_mode='HTML',  reply_markup=generate_markup_languages())
-    
-    
+
     # Handler for inline keyboard button clicks
     @bot.callback_query_handler(func=lambda call: True)
     def handle_callback_query(call):
@@ -54,6 +46,11 @@ def bot_logic():
         # is_survey_finished = user[0][3]
         try:    
             if call.data in ["ru", "uz_latin", "uz_kiril"]:
+                user = select_user(ChatId)
+                if user:
+                    increment_order_num(ChatId, 0)
+                else:
+                    new_user(ChatId)
                 set_language(ChatId, call.data)
                 send_question(ChatId)
 
