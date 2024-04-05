@@ -21,8 +21,9 @@ def bot_logic():
     # send question
     def send_question(user_id):
         user = select_user(user_id)
-        current_question_order = user[0][2]
-        chosen_language = user[0][1]
+        print(user)
+        current_question_order = user[0][3]
+        chosen_language = user[0][2]
         question = select_question(current_question_order, chosen_language)
         options = select_options(current_question_order, chosen_language)
         question_text = question[0][1]
@@ -48,39 +49,36 @@ def bot_logic():
     def handle_callback_query(call):
         ChatId = call.message.chat.id
         user = select_user(ChatId)
-        current_question_order = user[0][2]
-        lang = user[0][1]
+        current_question_order = user[0][3]
+        lang = user[0][2]
         # is_survey_finished = user[0][3]
         try:    
             if call.data in ["ru", "uz_latin", "uz_kiril"]:
                 set_language(ChatId, call.data)
                 send_question(ChatId)
 
-            question_idx, answer, select = call.data.split('_')
-            question_id = int(question_idx)
-            print(question_id)
-            if question_id > 51:
-                print("Yes")
-                return send_survey_finish_message(ChatId, lang)
+            if "_" in call.data:
+                question_idx, answer, select = call.data.split('_')
+                question_id = int(question_idx)
+                print(question_id)
+                if question_id > 51:
+                    print("Yes")
+                    return send_survey_finish_message(ChatId, lang)
 
-            if current_question_order == question_id:
-                increment_order_num(ChatId, current_question_order + 1)
-                return send_question(ChatId)
+                if current_question_order == question_id:
+                    increment_order_num(ChatId, current_question_order + 1)
+                    return send_question(ChatId)
 
             print(f"{call.data} is not recognized")
             # bot.send_message(ChatId, call.data)
         except Exception as ex:
             print(f"Error in callback data handling. {ex}")
 
-    
-
-    
     # data command
     @bot.message_handler(commands=['data'])
     def send_data(message):
         users = select_users()
         bot.send_message(message.chat.id, f"Users: {users}")
-    
 
     # bot polling
     bot.polling(non_stop=True, interval=0)

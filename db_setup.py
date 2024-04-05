@@ -14,7 +14,7 @@ def insert_data(questions, language):
             for o in q["answers"]:
                 print(f"0={o}")
                 insert_to_option(question_id, o, language, order_num)
-            order_num +=1
+            order_num += 1
 
 def db_setup():
     # creating tables
