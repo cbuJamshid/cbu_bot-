@@ -1,11 +1,10 @@
-import telebot
 from telebot import types
 
 # Helper function to generate inline keyboard markup
 def generate_markup_languages():
     markup = types.InlineKeyboardMarkup(row_width=2)
-    btn1 = types.InlineKeyboardButton(f"O'zbek Tili", callback_data=f"uz_latin")
-    btn2 = types.InlineKeyboardButton(f"Ўзбек тили", callback_data=f"uz_kiril")
+    btn1 = types.InlineKeyboardButton(f"O'zbek Tili", callback_data=f"uzlatin")
+    btn2 = types.InlineKeyboardButton(f"Ўзбек тили", callback_data=f"uzkiril")
     btn3 = types.InlineKeyboardButton(f"Русский язык", callback_data=f"ru")
     markup.add(btn1, btn2, btn3)
     return markup
