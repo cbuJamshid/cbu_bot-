@@ -1,8 +1,10 @@
 import telebot
 from config import BOT_TOKEN
 from telebot.types import Message, CallbackQuery
-from utils import generate_markup_languages
+from utils import generate_markup_languages, generate_option_markup
 from DAL.Repository.UserRepository import UserRepository
+from DAL.Repository.QuestionRepository import QuestionRepository
+from DAL.Repository.OptionRepository import OptionRepository
 from Models.main import *
 from datetime import datetime
 
@@ -33,8 +35,15 @@ def handle_start_command(message: Message):
 def handle_language_change_callback(call: CallbackQuery):
     user_id = call.message.chat.id
     UserRepository.set_language(user_id, call.data)
-    user = UserRepository.get(user_id)
-    bot.send_message(user.id, f"{user.id} {user.language}")
+    user = UserRepository.get(user_id)    
+
+    #bot.send_message(user_id, question.title, reply_markup=generate_option_markup(options, question.number))
+
+
+def send_question(number: int, language: str):
+    question = QuestionRepository.getByLanguageNumber(language, number)
+    options = OptionRepository.getByQuestionId(question.id)
+    return (question, options)
 
 
 @bot.callback_query_handler(func=lambda call: True)

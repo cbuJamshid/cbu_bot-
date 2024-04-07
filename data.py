@@ -1,5 +1,5 @@
 # Define the survey questions
-questions = [
+questions_ru = [
     {
         "number": 0,
         "question": "Укажите ваше текущее место проживания:",
@@ -28,13 +28,6 @@ questions = [
                     "образование", "здравоохр. и соц. услуги",
                     "искусство и развлечения", "индив. предпринимательство",
                     "другое"]
-    },
-    {
-        "number": 201,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 21,
@@ -170,13 +163,6 @@ questions = [
         "multiple_option_selection": True
     },
     {
-        "number": 81,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 9,
         "question": "Обеспечены ли данные кредиты залогом?",
         "answers": ["да", "нет"],
@@ -190,14 +176,6 @@ questions = [
         "has_sub_question": False,
         "multiple_option_selection": True,
     },
-    {
-        "number": 101,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-
     {
         "number": 11,
         "question": "Какую сумму составляют ежемесячные выплаты по ипотечному кредиту? ",
@@ -295,13 +273,6 @@ questions = [
         "multiple_option_selection": True,
     },
     {
-        "number": 221,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 23,
         "question": "Обеспечены ли данные кредиты или займы залогом?",
         "answers": ["да", "нет"],
@@ -315,13 +286,6 @@ questions = [
                     "имущественные права", "драгоценные металлы", "другое"],
         "has_sub_question": False,
         "multiple_option_selection": True,
-    },
-    {
-        "number": 241,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 25,
@@ -351,17 +315,10 @@ questions = [
         "number": 28,
         "question": "Для чего вы или члены вашего домохозяйства брали эти долги? Вы можете выбрать несколько вариантов",
         "answers": ["приобретение жилья", "покупка автотранспорта", "потребительские товары",
-                    "ежедневные расходы", "лечение", "образование", "отдых", "развитие частного бизнеса",
-                    "оплата другого кредита", "проведение свадьбы", "ремонт жилья", "другое"],
+                    "лечение", "образование", "отдых","проведение свадьбы",
+                    "ремонт жилья", "другое"],
         "has_sub_question": False,
         "multiple_option_selection": True,
-    },
-    {
-        "number": 281,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 29,
@@ -409,13 +366,6 @@ questions = [
         "multiple_option_selection": True,
     },
     {
-        "number": 341,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 35,
         "question": "За последние 6 месяцев бывали ли случаи, когда вам или кому-либо из членов вашего домохозяйства отказывали в выдаче кредита, микрозайма или занижали запрашиваемую сумму?",
         "answers": ["да", "нет", "затрудняюсь ответить"],
@@ -428,13 +378,6 @@ questions = [
         "answers": ["отсутствие места работы", "нехватка доходов", "отсутствие залогa", "недостаточность залога", "наличие другого кредита", "плохая кредитная история", "другое"],
         "has_sub_question": False,
         "multiple_option_selection": True,
-    },
-    {
-        "number": 361,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 37,
@@ -457,19 +400,12 @@ questions = [
                     "ежедневные расходы", "лечение", "образование", "отдых", "развитие частного бизнеса",
                     "оплата другого кредита", "проведение свадьбы", "ремонт жилья", "другое"],
         "has_sub_question": False,
-        "multiple_option_selection": False,
-    },
-    {
-        "number": 391,
-        "question": "Перейти на следующий вопрос",
-        "answers": ["Следующий вопрос"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
+        "multiple_option_selection": True,
     },
 ]
 
 # Define the survey questions
-questions_uz = [
+questions_uz_kiril = [
     {
         "number": 0,
         "question": "Ҳозирги яшаш жойингизни кўрсатинг:",
@@ -498,13 +434,6 @@ questions_uz = [
                     "таълим", "ижтимоий хизматлар",
                     "санъат ва кўнгил очиш", "якка тартиб. тадбиркорлик",
                     "бошқалар"]
-    },
-    {
-        "number": 201,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 21,
@@ -640,13 +569,6 @@ questions_uz = [
         "multiple_option_selection": True
     },
     {
-        "number": 81,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 9,
         "question": "Ушбу кредитлар гаров билан таъминланганми?",
         "answers": ["ҳа", "йўқ"],
@@ -659,13 +581,6 @@ questions_uz = [
         "answers": ["кўчмас мулк", "автотранспорт", "айланмадаги товарлар", "товар-моддий қимматликлар", "мулкий ҳуқуқлар", "қимматбаҳо металлар", "бошқалар"],
         "has_sub_question": False,
         "multiple_option_selection": True,
-    },
-    {
-        "number": 101,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 11,
@@ -767,13 +682,6 @@ questions_uz = [
         "multiple_option_selection": True,
     },
     {
-        "number": 221,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 23,
         "question": "Ушбу кредитлар гаров билан таъминланганми?",
         "answers": ["ҳа", "йўқ"],
@@ -787,14 +695,7 @@ questions_uz = [
                     "мулкий ҳуқуқлар", "қимматбаҳо металлар", "бошқалар"],
 
         "has_sub_question": False,
-        "multiple_option_selection": False,
-    },
-    {
-        "number": 241,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
+        "multiple_option_selection": True,
     },
     {
         "number": 25,
@@ -808,8 +709,8 @@ questions_uz = [
     {
         "number": 26,
         "question": "Ушбу кредит ёки қарз тўловлари бўйича қанча муддат қолган?",
-        "answers": ["1 йилдан кам", "1 йилдан 5 йилгача", "5 йилдан 10 йилгача", "10 йилдан 15 йилгача", "15 йилдан 20 йилгача",
-                    "20 йил ва ундан ортиқ"],
+        "answers": ["1 йилдан кам", "1 йилдан 2 йилгача", "2 йилдан 3 йилгача", "3 йилдан 4 йилгача", "4 йилдан 5 йилгача",
+                    "5 йил ва ундан ортиқ"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -824,17 +725,10 @@ questions_uz = [
         "number": 28,
         "question": "Ушбу қарзларни қайси мақсадда олинган? Бир нечта вариантни танлашингиз мумкин",
         "answers": ["уй-жой олиш", "автотранспорт олиш", "истеъмол товарларини олиш",
-                    "кундалик харажатлар", "даволаниш", "таълим", "дам олиш", "хус. тадбиркорликни ривож.",
-                    "бошқа кредитни тўлаш", "тўй маросимини ўтказиш", "уй-жойни таъмирлаш", "бошқалар"],
+                    "даволаниш", "таълим", "дам олиш", "тўй маросимини ўтказиш", "уй-жойни таъмирлаш", 
+                    "бошқалар"],
         "has_sub_question": False,
         "multiple_option_selection": True,
-    },
-    {
-        "number": 281,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 29,
@@ -848,8 +742,8 @@ questions_uz = [
     {
         "number": 30,
         "question": "Ушбу қарз тўловлари бўйича қанча муддат қолган?",
-        "answers": ["1 йилдан кам", "1 йилдан 5 йилгача", "5 йилдан 10 йилгача", "10 йилдан 15 йилгача", "15 йилдан 20 йилгача",
-                    "20 йил ва ундан ортиқ"],
+        "answers": ["1 йилдан кам", "1 йилдан 2 йилгача", "2 йилдан 3 йилгача", "3 йилдан 4 йилгача", "4 йилдан 5 йилгача",
+                    "5 йил ва ундан ортиқ"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -882,13 +776,6 @@ questions_uz = [
         "multiple_option_selection": True,
     },
     {
-        "number": 341,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 35,
         "question": "Сўнгги 6 ойда сиз ёки уй хўжалигингиз аъзоларидан бирига кредит, микроқарз ажратишнинг рад этилганлиги ёки сўралган миқдорнинг камайтирилган ҳолатлари кузатилдими?",
         "answers": ["ҳа", "йўқ", "жавоб беришим қийин"],
@@ -901,13 +788,6 @@ questions_uz = [
         "answers": ["Иш жойининг йўқлиги", "Иш ҳақининг камлиги", "Гаровнинг йўқлиги", "гаровнинг этарли эмаслиги", "Бошқа кредитнинг мавжудлиги", "ёмон кредит тарихи", "бошқалар"],
         "has_sub_question": False,
         "multiple_option_selection": True,
-    },
-    {
-        "number": 361,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 37,
@@ -930,15 +810,8 @@ questions_uz = [
                     "кундалик харажатлар", "даволаниш", "таълим", "дам олиш", "хус. тадбиркорликни ривож.",
                     "бошқа кредитни тўлаш", "тўй маросимини ўтказиш", "уй-жойни таъмирлаш", "бошқалар"],
         "has_sub_question": False,
-        "multiple_option_selection": False,
-    },
-    {
-        "number": 391,
-        "question": "Кейинги саволга ўтиш",
-        "answers": ["Кейинги савол"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
+        "multiple_option_selection": True,
+    }
 ]
 
 
@@ -972,13 +845,6 @@ questions_uz_latin = [
                     "ta’lim", "ijtimoiy xizmatlar",
                     "san’at va ko‘ngil ochish", "yakka tartib. tadbirkorlik",
                     "boshqalar"]
-    },
-    {
-        "number": 201,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 21,
@@ -1114,13 +980,6 @@ questions_uz_latin = [
         "multiple_option_selection": True
     },
     {
-        "number": 81,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 9,
         "question": "Ushbu kreditlar garov bilan ta’minlanganmi?",
         "answers": ["ha", "yo‘q"],
@@ -1135,13 +994,6 @@ questions_uz_latin = [
         "multiple_option_selection": True,
     },
     {
-        "number": 101,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 11,
         "question": "Ushbu ipoteka krediti bo‘yicha oylik to‘lovingiz miqdori qancha?",
         "answers": ["2 mln so‘mdan kam", "2 dan 4 mln so‘mgacha", "4 dan 6 mln so‘mgacha", "6 dan 8 mln so‘mgacha",
@@ -1153,7 +1005,8 @@ questions_uz_latin = [
     {
         "number": 12,
         "question": "Ushbu ipoteka krediti to‘lovlari bo‘yicha qancha muddat qolgan?",
-        "answers": ["2 yildan kam", "2 yildan 4 yilgacha", "4 yildan 6 yilgacha", "6 yildan 8 yilgacha", "8 yildan 10 yilgacha", "10 yildan 12 yilgacha", "12 yildan 14 yilgacha", "14 yildan 16 yilgacha", "16 yildan 18 yilgacha", "18 yildan 20 yilgacha", "20 yil va undan ortiq"],
+        "answers": ["1 yildan kam", "1 yildan 2 yilgacha", "2 yildan 3 yilgacha", "3 yildan 4 yilgacha", "4 yildan 5 yilgacha",
+                    "5 yil va undan ortiq"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -1169,10 +1022,8 @@ questions_uz_latin = [
     {
         "number": 14,
         "question": "Ushbu avtokredit to‘lovlari bo‘yicha qancha muddat qolgan?",
-        "answers": ["2 yildan kam", "2 yildan 4 yilgacha", "4 yildan 6 yilgacha", "6 yildan 8 yilgacha",
-                    "8 yildan 10 yilgacha", "10 yildan 12 yilgacha", "12 yildan 14 yilgacha", "14 yildan 16 yilgacha",
-                    "16 yildan 18 yilgacha", "18 yildan 20 yilgacha", "20 yil va undan ortiq"],
-
+        "answers": ["1 yildan kam", "1 yildan 2 yilgacha", "2 yildan 3 yilgacha", "3 yildan 4 yilgacha", "4 yildan 5 yilgacha",
+                    "5 yil va undan ortiq"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -1188,9 +1039,8 @@ questions_uz_latin = [
     {
         "number": 16,
         "question": "Ushbu iste`mol kreditlari to‘lovlari bo‘yicha qancha muddat qolgan?",
-        "answers": ["2 yildan kam", "2 yildan 4 yilgacha", "4 yildan 6 yilgacha", "6 yildan 8 yilgacha",
-                    "8 yildan 10 yilgacha", "10 yildan 12 yilgacha", "12 yildan 14 yilgacha", "14 yildan 16 yilgacha",
-                    "16 yildan 18 yilgacha", "18 yildan 20 yilgacha", "20 yil va undan ortiq"],
+        "answers": ["1 yildan kam", "1 yildan 2 yilgacha", "2 yildan 3 yilgacha", "3 yildan 4 yilgacha", "4 yildan 5 yilgacha",
+                    "5 yil va undan ortiq"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -1206,9 +1056,8 @@ questions_uz_latin = [
     {
         "number": 18,
         "question": "Ushbu mikroqarz krediti to‘lovlari bo‘yicha qancha muddat qolgan?",
-        "answers": ["2 yildan kam", "2 yildan 4 yilgacha", "4 yildan 6 yilgacha", "6 yildan 8 yilgacha",
-                    "8 yildan 10 yilgacha", "10 yildan 12 yilgacha", "12 yildan 14 yilgacha", "14 yildan 16 yilgacha",
-                    "16 yildan 18 yilgacha", "18 yildan 20 yilgacha", "20 yil va undan ortiq"],
+        "answers": ["1 yildan kam", "1 yildan 2 yilgacha", "2 yildan 3 yilgacha", "3 yildan 4 yilgacha", "4 yildan 5 yilgacha",
+                    "5 yil va undan ortiq"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -1224,9 +1073,8 @@ questions_uz_latin = [
     {
         "number": 20,
         "question": "Boshqa kreditlar to‘lovlari bo‘yicha qancha muddat qolgan?",
-        "answers": ["2 yildan kam", "2 yildan 4 yilgacha", "4 yildan 6 yilgacha", "6 yildan 8 yilgacha",
-                    "8 yildan 10 yilgacha", "10 yildan 12 yilgacha", "12 yildan 14 yilgacha", "14 yildan 16 yilgacha",
-                    "16 yildan 18 yilgacha", "18 yildan 20 yilgacha", "20 yil va undan ortiq"],
+        "answers": ["1 yildan kam", "1 yildan 2 yilgacha", "2 yildan 3 yilgacha", "3 yildan 4 yilgacha", "4 yildan 5 yilgacha",
+                    "5 yil va undan ortiq"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -1247,13 +1095,6 @@ questions_uz_latin = [
         "multiple_option_selection": True,
     },
     {
-        "number": 221,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 23,
         "question": "Ushbu kreditlar garov bilan ta’minlanganmi?",
         "answers": ["ha", "yo‘q"],
@@ -1266,14 +1107,7 @@ questions_uz_latin = [
         "answers": ["ko‘chmas mulk", "avtotransport", "aylanmadagi tovarlar", "tovar-moddiy qimmatliklar",
                     "mulkiy huquqlar", "qimmatbaho metallar", "boshqalar"],
         "has_sub_question": False,
-        "multiple_option_selection": False,
-    },
-    {
-        "number": 241,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
+        "multiple_option_selection": True,
     },
     {
         "number": 25,
@@ -1288,8 +1122,8 @@ questions_uz_latin = [
     {
         "number": 26,
         "question": "Ushbu kredit yoki qarz to‘lovlari bo‘yicha qancha muddat qolgan?",
-        "answers": ["1 yildan kam", "1 yildan 5 yilgacha", "5 yildan 10 yilgacha", "10 yildan 15 yilgacha", "15 yildan 20 yilgacha",
-                    "20 yil va undan ortiq"],
+        "answers": ["1 yildan kam", "1 yildan 2 yilgacha", "2 yildan 3 yilgacha", "3 yildan 4 yilgacha", "4 yildan 5 yilgacha",
+                    "5 yil va undan ortiq"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -1304,17 +1138,9 @@ questions_uz_latin = [
         "number": 28,
         "question": "Ushbu qarzlarni qaysi maqsadda olingan? Bir nechta variantni tanlashingiz mumkin",
         "answers": ["uy-joy sotib olish", "avtotransport olish", "iste’mol tovarlarini olish",
-                    "kundalik xarajatlar", "davolanish", "ta’lim", "dam olish", "xus. tadbirkorlikni rivoj.",
-                    "boshqa kredit to‘lash", "to‘y marosimini o‘tkazish", "uy-joyni ta’mirlash", "boshqalar"],
+                    "davolanish", "ta’lim", "dam olish", "to‘y marosimini o‘tkazish", "uy-joyni ta’mirlash", "boshqalar"],
         "has_sub_question": False,
         "multiple_option_selection": True,
-    },
-    {
-        "number": 281,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 29,
@@ -1329,8 +1155,8 @@ questions_uz_latin = [
     {
         "number": 30,
         "question": "Ushbu qarz to‘lovlari bo‘yicha qancha muddat qolgan?",
-        "answers": ["1 yildan kam", "1 yildan 5 yilgacha", "5 yildan 10 yilgacha", "10 yildan 15 yilgacha", "15 yildan 20 yilgacha",
-                    "20 yil va undan ortiq"],
+        "answers": ["1 yildan kam", "1 yildan 2 yilgacha", "2 yildan 3 yilgacha", "3 yildan 4 yilgacha", "4 yildan 5 yilgacha",
+                    "5 yil va undan ortiq"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
@@ -1363,13 +1189,6 @@ questions_uz_latin = [
         "multiple_option_selection": True,
     },
     {
-        "number": 341,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
-    {
         "number": 35,
         "question": "So‘nggi 6 oyda siz yoki uy xo‘jaligingiz a’zolaridan biriga kredit, mikroqarz ajratishning rad etilganligi yoki so‘ralgan miqdorning kamaytirilgan holatlari kuzatildimi?",
         "answers": ["ha", "yo‘q", "javob berishim qiyin"],
@@ -1382,13 +1201,6 @@ questions_uz_latin = [
         "answers": ["Ish joyining yo`qligi", "Ish haqining kamligi", "Garovning yo`qligi", "Garovning yetarli emasligi", "Boshqa kreditning mavjudligi", "Yomon kredit tarixi", "Boshqalar"],
         "has_sub_question": False,
         "multiple_option_selection": True,
-    },
-    {
-        "number": 361,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
     },
     {
         "number": 37,
@@ -1411,13 +1223,6 @@ questions_uz_latin = [
                     "kundalik xarajatlar", "davolanish", "ta’lim", "dam olish", "xus. tadbirkorlikni rivoj.",
                     "boshqa kredit to‘lash", "to‘y marosimini o‘tkazish", "uy-joyni ta’mirlash", "boshqalar"],
         "has_sub_question": False,
-        "multiple_option_selection": False,
-    },
-    {
-        "number": 391,
-        "question": "Keyingi savolga o'tish",
-        "answers": ["Keyingi savol"],
-        "has_sub_question": False,
-        "multiple_option_selection": False
-    },
+        "multiple_option_selection": True,
+    }
 ]
