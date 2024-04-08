@@ -36,19 +36,31 @@ def handle_language_change_callback(call: CallbackQuery):
     user_id = call.message.chat.id
     UserRepository.set_language(user_id, call.data)
     user = UserRepository.get(user_id)    
-    question, options = send_question(user.current_question_number, call.data)
-    bot.send_message(user_id, question.title, reply_markup=generate_option_markup(options, question.number))
+    send_question(user_id)
+    
 
-
-def send_question(number: int, language: str):
+def get_question(number: int, language: str):
     question = QuestionRepository.getByLanguageNumber(language, number)
     options = OptionRepository.getByQuestionId(question.id)
     return (question, options)
 
+def send_question(user_id):
+    user = UserRepository.get(user_id) 
+    question, options = get_question(user.current_question_number, user.language)
+    bot.send_message(user_id, question.title, reply_markup=generate_option_markup(options, question.number))
 
-@bot.callback_query_handler(func=lambda call: True)
+@bot.callback_query_handler(func=lambda call: "_" in call.data)
 def handle_response_callback(call: CallbackQuery):
-    bot.send_message(call.message.chat.id, call.data)
+    user_id = call.message.chat.id
+    user = UserRepository.get(user_id)    
+    question_number, option_id, select = call.data.split("_")
+    question_number_int = int(question_number)
+    bot.send_message(user_id, f"q: {question_number_int} - c: {user.current_question_number}")
+    if question_number_int == user.current_question_number:
+        UserRepository.set_question_number(user_id, question_number_int + 1)
+        send_question(user_id)
+    else:    
+        return bot.send_message(call.message.chat.id, f"Editing: {call.data}")
 
 
 bot.infinity_polling()
