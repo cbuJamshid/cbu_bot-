@@ -22,6 +22,11 @@ class UserRepository:
             return session.query(User).get({"id": user_id})
 
     @staticmethod
+    def get_all() -> []:
+        with Session() as session:
+            return session.query(User).all()
+
+    @staticmethod
     def create(user: User) -> None:
         with Session() as session:
             session.add(user)
