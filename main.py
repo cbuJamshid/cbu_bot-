@@ -36,8 +36,8 @@ def handle_language_change_callback(call: CallbackQuery):
     user_id = call.message.chat.id
     UserRepository.set_language(user_id, call.data)
     user = UserRepository.get(user_id)    
-
-    #bot.send_message(user_id, question.title, reply_markup=generate_option_markup(options, question.number))
+    question, options = send_question(user.current_question_number, call.data)
+    bot.send_message(user_id, question.title, reply_markup=generate_option_markup(options, question.number))
 
 
 def send_question(number: int, language: str):
