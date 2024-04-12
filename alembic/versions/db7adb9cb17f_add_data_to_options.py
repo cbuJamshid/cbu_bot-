@@ -9,7 +9,7 @@ from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
-from data import questions_ru, questions_uz_kiril, questions_uz_latin
+from data.questions import questions_ru, questions_uz_kiril, questions_uz_latin
 from DAL.Repository.QuestionRepository import QuestionRepository
 from sqlalchemy import MetaData, Table
 

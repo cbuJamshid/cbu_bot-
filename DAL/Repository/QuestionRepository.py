@@ -3,7 +3,7 @@ from Models.main import Question
 from constants import RU, UZLATIN, UZKIRIL
 
 class QuestionRepository:
-    _question_cache = {RU: {}, UZLATIN: {}, UZKIRIL: {}}
+    _question_cache = {"ru": {}, "uzlatin": {}, "uzkiril": {}}
 
     @staticmethod
     def getByLanguageNumber(language: str, number: int) -> Question:
@@ -18,3 +18,8 @@ class QuestionRepository:
             ).first()
             QuestionRepository._question_cache[language][number] = db_question
             return db_question
+
+    @staticmethod
+    def getAll():
+        with Session() as session:
+            return session.query(Question).filter(Question.language == UZLATIN).all()

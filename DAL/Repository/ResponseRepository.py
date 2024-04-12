@@ -44,7 +44,8 @@ class ResponseRepository:
             if response:
                 response = session.query(Response).filter(
                     Response.user_id == user_id,
-                    Response.question_id == question_id
+                    Response.question_id == question_id,
+                    Response.option_id == option_id
                 ).delete()
             else:
                 new_response = Response(
@@ -64,3 +65,8 @@ class ResponseRepository:
     def get_by_question_and_user_id(user_id: int, question_id: int) -> list[Response]:
         with Session() as session:
             return session.query(Response).filter(Response.user_id == user_id, Response.question_id == question_id).all()
+
+    @staticmethod
+    def get_single_by_question_user_id(user_id: int, question_id: int) -> Response:
+        with Session() as session:
+            return session.query(Response).filter(Response.user_id == user_id, Response.question_id == question_id).first()

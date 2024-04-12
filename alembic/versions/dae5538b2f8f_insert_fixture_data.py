@@ -6,7 +6,7 @@ Create Date: 2024-04-07 12:38:03.293361
 
 """
 from typing import Sequence, Union
-from data import questions_ru, questions_uz_kiril, questions_uz_latin
+from data.questions import questions_ru, questions_uz_kiril, questions_uz_latin
 
 from alembic import op
 import sqlalchemy as sa
