@@ -1,2 +1,6 @@
 SINGLE_OPTION_SELECTED_SYMBOL = "🔘"
 MULTIPLE_OPTION_SELECTED_SYMBOL = "☑️"
+
+UZLATIN = "uzlatin"
+UZKIRIL = "uzkiril"
+RU = "ru"

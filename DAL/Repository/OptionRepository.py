@@ -1,14 +1,19 @@
 from db_session import Session
 from Models.main import Option
+from functools import cached_property
 
 
 class OptionRepository:
-    @staticmethod
-    def getByQuestionId(question_id: int) -> list[Option]:
-        session = Session()
-        return session.query(Option).filter(Option.question_id == question_id).all()
+    _option_cache = {}
 
     @staticmethod
-    def get_by_id(id: int) -> Option:
+    @cached_property
+    def getByQuestionId(question_id: int) -> list[Option]:
+        options: list[Option] = OptionRepository._option_cache.get(question_id)
+        if options: 
+            print("OPTION: CACHE HIT ->>>>>>>>")
+            return options
         with Session() as session:
-            return session.query(Option).get({"id": id})
+            options = session.query(Option).filter(Option.question_id == question_id).all()
+            OptionRepository._option_cache[question_id] = options
+            return options
