@@ -36,6 +36,25 @@ class QuestionHandler:
     def send_question(self, bot: TeleBot, user_id: int) -> None:
         user = UserRepository.get(user_id)
         question_number = user.current_question_number
+
+        if question_number == 4:
+            user_language = user.language
+            question_id = QuestionRepository.getByLanguageNumber(user_language, question_number).id
+            question3_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for response in question3_responses:
+                option = OptionRepository.getById(response.option_id)
+                jump_question_number = jump_options_question4.get(user_language).get(option.option_text)
+                if jump_question_number == 4:
+                    jump_question = self._get_question(jump_question_number, user_language)
+                    options = self._get_options(jump_question.id)
+                    bot.send_message(
+                        user.id,
+                        jump_question.title, 
+                        reply_markup=generate_option_markup(options, jump_question.number, jump_question.id, jump_question.is_single_option)
+                    )
+                    self.set_user_question_number(user, question_number)
+                    return
+
         question = self._get_question(user.current_question_number, user.language)        
         options = self._get_options(question.id)
         if question.is_single_option:  # multiple

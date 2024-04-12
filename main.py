@@ -131,7 +131,7 @@ def handle_next_question_callback(call: CallbackQuery):
     user = UserRepository.get(user_id)
     _, question_number = call.data.split("_")
     question_number = int(question_number)
-    QuestionHandler.get_instance().send_question4(bot, user)
+    QuestionHandler.get_instance().send_question(bot, user.id)
 
     # if user.current_question_number == question_number:
     #     UserRepository.set_question_number(user_id, question_number + 1)
