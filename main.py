@@ -1,14 +1,17 @@
 import telebot
 from config import BOT_TOKEN
 from telebot.types import Message, CallbackQuery
-from utils import generate_markup_languages, generate_option_markup, str_to_bool
+from utils import generate_markup_languages, extract_values_from_callback_data, generate_option_markup
 from DAL.Repository.UserRepository import UserRepository
 from DAL.Repository.OptionRepository import OptionRepository
 from DAL.Repository.ResponseRepository import ResponseRepository
 from DAL.Handlers.question import QuestionHandler
-from DAL.Handlers.response import ResponseHandler
 from Models.main import *
 from datetime import datetime
+from constants import (
+    SINGLE_OPTION_SELECTED_SYMBOL,
+    MULTIPLE_OPTION_SELECTED_SYMBOL,
+)
 
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -62,45 +65,40 @@ def handle_language_change_callback(call: CallbackQuery):
     QuestionHandler.get_instance().send_question(bot, user_id)
 
 
-@bot.callback_query_handler(func=lambda call: "none" in call.data or "selected" in call.data)
+@bot.callback_query_handler(func=lambda call: "questions" in call.data)
 def handle_response_callback(call: CallbackQuery):
     user_id = call.message.chat.id
     user = UserRepository.get(user_id)
-    question_id, question_number, option_id, is_single_option, select = call.data.split("_")
+    question_id, question_number, option_id, is_multiple_option = extract_values_from_callback_data(
+        call.data
+    )
     options = OptionRepository.getByQuestionId(question_id)
-    question_number = int(question_number)
-    question_id = int(question_id)
-    is_single_option = str_to_bool(is_single_option)
-    selected_symbol = "🔘"
-    if is_single_option:
-        selected_symbol = "☑️"
+    markup = generate_option_markup(options, question_number, question_id, is_multiple_option)
+
+    if is_multiple_option:
         ResponseRepository.delete_or_create(user_id, question_id, option_id)
-        responses = ResponseRepository.get_response_by_question_and_user_ids(user_id, question_id)
-        selected_options = []
-        for r in responses:
-            selected_options.append(r.option_id)
-        markup = generate_option_markup(options, question_number, question_id, is_single_option)
+        users_responses = ResponseRepository.get_by_question_and_user_id(user_id, question_id)
+        selected_option_ids = [response.option_id for response in users_responses]
+        # Showing selected options with 'selected_symbol'
         for row in markup.keyboard:
             for button in row:
-                question_id, question_number, option_id_, is_single_option, select = button.callback_data.split("_")
-                if option_id_ in selected_options:
-                    option = OptionRepository.get_by_id(option_id_)
-                    button.text = f"{selected_symbol} {option.option_text}"
-                    button.callback_data = f"{question_id}_{question_number}_{option_id}_selected"
+                _, _, response_option_id, _, _ = button.callback_data.split("_")
+                if int(response_option_id) in selected_option_ids:
+                    button.text = MULTIPLE_OPTION_SELECTED_SYMBOL + button.text[1:]
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
     else:
-        ResponseHandler.set_response(user_id, question_id, option_id)
-        markup = generate_option_markup(options, question_number, question_id, is_single_option)
+        ResponseRepository.update_or_create(user_id, question_id, option_id)
+        # Showing selected options with 'selected_symbol'
         for row in markup.keyboard:
             for button in row:
-                if button.callback_data == call.data:
-                    option = OptionRepository.get_by_id(option_id)
-                    button.text = f"{selected_symbol} {option.option_text}"
-                    button.callback_data = f"{question_id}_{question_number}_{option_id}_selected"
+                _, _, response_option_id, _, _ = button.callback_data.split("_")
+                if int(response_option_id) == option_id:
+                    button.text = SINGLE_OPTION_SELECTED_SYMBOL + button.text[1:]
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
-        if question_number == user.current_question_number:
-            UserRepository.set_question_number(user_id, question_number + 1)
-            QuestionHandler.get_instance().send_question(bot, user_id)
+
+    if question_number == user.current_question_number:
+        UserRepository.set_question_number(user_id, question_number + 1)
+        QuestionHandler.get_instance().send_question(bot, user_id)
 
 
 @bot.callback_query_handler(func=lambda call: "next" in call.data)

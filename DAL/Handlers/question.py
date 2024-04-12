@@ -17,7 +17,8 @@ class QuestionHandler:
 
     def send_question(self, bot: TeleBot, user_id: int) -> None:
         user = UserRepository.get(user_id) 
-        question, options = self._get_question(user.current_question_number, user.language)
+        question = self._get_question(user.current_question_number, user.language)
+        options = self._get_options(question.id)
         if question.is_single_option:
             bot.send_message(
                 user_id, 
@@ -26,18 +27,19 @@ class QuestionHandler:
                     options, question.number, question.id, question.is_single_option
                 )
             )
-            self._send_next_question_menu(user_id, question.language, question.number)
+            self._send_next_question_menu(bot, user_id, question.language, question.number)
         else:
             bot.send_message(
-                user_id, 
+                user_id,
                 question.title, 
                 reply_markup=generate_option_markup(options, question.number, question.id, question.is_single_option)
             )
 
-    def _get_question(self, number: int, language: str) -> tuple[Question, list[Option]]:
-        question = QuestionRepository.getByLanguageNumber(language, number)
-        options = OptionRepository.getByQuestionId(question.id)
-        return question, options
+    def _get_question(self, number: int, language: str) -> Question:
+        return QuestionRepository.getByLanguageNumber(language, number)
+    
+    def _get_options(self, question_id: int) -> list[Option]:
+        return OptionRepository.getByQuestionId(question_id)
 
     def _send_next_question_menu(self, bot: TeleBot, user_id: int, lang: str, number: int) -> None:
         description = "Перейти следующего вопроса"

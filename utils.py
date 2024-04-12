@@ -20,7 +20,7 @@ def generate_option_markup(options: list[Option], question_number: int, question
 
     markup = types.InlineKeyboardMarkup(row_width=2)
     for option in options:
-        markup.add(types.InlineKeyboardButton(text=f"{select_symbol} {option.option_text}", callback_data=f"{question_id}_{question_number}_{option.id}_{is_single_option}_none"))
+        markup.add(types.InlineKeyboardButton(text=f"{select_symbol} {option.option_text}", callback_data=f"{question_id}_{question_number}_{option.id}_{is_single_option}_questions"))
     return markup
 
 
@@ -44,3 +44,8 @@ def str_to_bool(text) -> bool:
         return False
     else:
         return True
+
+
+def extract_values_from_callback_data(callback_data: str) -> tuple[int, int, int, bool]:
+    question_id, question_number, option_id, is_single_option, _ = callback_data.split("_")
+    return int(question_id), int(question_number), int(option_id), str_to_bool(is_single_option)
