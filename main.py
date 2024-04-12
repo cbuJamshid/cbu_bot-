@@ -1,11 +1,12 @@
 import telebot
 from config import BOT_TOKEN
 from telebot.types import Message, CallbackQuery
-from utils import generate_markup_languages, generate_option_markup, str_to_bool, generate_next_markup
+from utils import generate_markup_languages, generate_option_markup, str_to_bool
 from DAL.Repository.UserRepository import UserRepository
-from DAL.Repository.QuestionRepository import QuestionRepository
 from DAL.Repository.OptionRepository import OptionRepository
 from DAL.Repository.ResponseRepository import ResponseRepository
+from DAL.Handlers.question import QuestionHandler
+from DAL.Handlers.response import ResponseHandler
 from Models.main import *
 from datetime import datetime
 
@@ -13,6 +14,7 @@ from datetime import datetime
 bot = telebot.TeleBot(BOT_TOKEN)
 
 
+# Message handlers
 @bot.message_handler(commands=["start"])
 def handle_start_command(message: Message):
     user_id = message.chat.id
@@ -34,60 +36,30 @@ def handle_start_command(message: Message):
     )
 
 
-@bot.callback_query_handler(func=lambda call: call.data in ["ru", "uzlatin", "uzkiril"])
-def handle_language_change_callback(call: CallbackQuery):
-    user_id = call.message.chat.id
-    UserRepository.set_language(user_id, call.data)
-    UserRepository.set_question_number(user_id, 1)
-    send_question(user_id)
-    
-
-def get_question(number: int, language: str):
-    question = QuestionRepository.getByLanguageNumber(language, number)
-    options = OptionRepository.getByQuestionId(question.id)
-    return question, options
-
-
-def send_question(user_id):
-    user = UserRepository.get(user_id) 
-    question, options = get_question(user.current_question_number, user.language)
-    if question.is_single_option:
-        bot.send_message(user_id, question.title,
-                         reply_markup=generate_option_markup(options, question.number, question.id,
-                                                             question.is_single_option))
-        return send_next(user_id, question.language, question.number)
-    bot.send_message(user_id, question.title, reply_markup=generate_option_markup(options, question.number, question.id, question.is_single_option))
-
-
-def send_next(user_id, lang, number):
-    description = "Перейти следующего вопроса"
-    if lang == "uzlatin":
-        description = "Keyingi savolga o'tish"
-    elif lang == "uzkiril":
-        description = "Кейинги саволга отиш"
-    return bot.send_message(user_id, description, reply_markup=generate_next_markup(lang, number))
-
-
 @bot.message_handler(commands=["users"])
-def handle_start_command(message: Message):
+def handle_users_command(message: Message):
     user_id = message.chat.id
     users = UserRepository.get_all()
-    # Print the users
     for user in users:
         bot.send_message(user_id, f"ID: {user.id}, Language: {user.language}, Question: {user.current_question_number}")
 
 
 @bot.message_handler(commands=["responses"])
-def handle_start_command(message: Message):
+def handle_responses_command(message: Message):
     user_id = message.chat.id
     responses = ResponseRepository.get_all()
-    # Print the responses
     for r in responses:
         bot.send_message(user_id, f"ID: {r.id}, USER_ID: {r.user_id}, QUESTION_ID: {r.question_id}, OPTION_ID: {r.option_id}")
 
 
-def set_response(user_id, question_id, option_id):
-    return ResponseRepository.update_or_create(user_id, question_id, option_id)
+
+# Callback handlers
+@bot.callback_query_handler(func=lambda call: call.data in ["ru", "uzlatin", "uzkiril"])
+def handle_language_change_callback(call: CallbackQuery):
+    user_id = call.message.chat.id
+    UserRepository.set_language(user_id, call.data)
+    UserRepository.set_question_number(user_id, 1)
+    QuestionHandler.get_instance().send_question(bot, user_id)
 
 
 @bot.callback_query_handler(func=lambda call: "none" in call.data or "selected" in call.data)
@@ -117,7 +89,7 @@ def handle_response_callback(call: CallbackQuery):
                     button.callback_data = f"{question_id}_{question_number}_{option_id}_selected"
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
     else:
-        set_response(user_id, question_id, option_id)  # setting response here
+        ResponseHandler.set_response(user_id, question_id, option_id)
         markup = generate_option_markup(options, question_number, question_id, is_single_option)
         for row in markup.keyboard:
             for button in row:
@@ -128,18 +100,18 @@ def handle_response_callback(call: CallbackQuery):
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
         if question_number == user.current_question_number:
             UserRepository.set_question_number(user_id, question_number + 1)
-            return send_question(user_id)
+            QuestionHandler.get_instance().send_question(bot, user_id)
 
 
 @bot.callback_query_handler(func=lambda call: "next" in call.data)
-def handle_response_callback(call: CallbackQuery):
+def handle_next_question_callback(call: CallbackQuery):
     user_id = call.message.chat.id
     user = UserRepository.get(user_id)
-    n_text, question_number = call.data.split("_")
+    _, question_number = call.data.split("_")
     question_number = int(question_number)
     if user.current_question_number == question_number:
         UserRepository.set_question_number(user_id, question_number + 1)
-        return send_question(user_id)
+        QuestionHandler.get_instance().send_question(bot, user_id)
     return
 
 

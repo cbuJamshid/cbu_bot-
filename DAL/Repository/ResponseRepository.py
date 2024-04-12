@@ -82,7 +82,7 @@ class ResponseRepository:
         session.commit()
 
     @staticmethod
-    def get_all() -> []:
+    def get_all() -> list[Response]:
         with Session() as session:
             return session.query(Response).all()
 

@@ -22,7 +22,7 @@ class UserRepository:
             return session.query(User).get({"id": user_id})
 
     @staticmethod
-    def get_all() -> []:
+    def get_all() -> list[User]:
         with Session() as session:
             return session.query(User).all()
 
