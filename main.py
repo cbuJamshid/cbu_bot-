@@ -97,12 +97,6 @@ def handle_response_callback(call: CallbackQuery):
     markup = generate_option_markup(options, question_number, question_id, is_multiple_option)
 
     if is_multiple_option:
-        op = OptionRepository.getById(option_id)
-        print()
-        print("op")
-        print(question_id)
-        print()
-        print()
         ResponseRepository.delete_or_create(user_id, question_id, option_id)
         users_responses = ResponseRepository.get_by_question_and_user_id(user_id, question_id)
         selected_option_ids = [response.option_id for response in users_responses]

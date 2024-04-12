@@ -22,41 +22,11 @@ class QuestionHandler:
         question_id = QuestionRepository.getByLanguageNumber(user_language, 3).id
         responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
 
-        print()
-        print("responses")
-        print(responses)
-        print()
-
-        for response in responses:
-            option = OptionRepository.getById(response.option_id)
-            print()
-            print("option")
-            print(option.option_text)
-            print()
-        
-        print("END")
-
         for response in responses:
             option = OptionRepository.getById(response.option_id)
             jump_question_number = jump_options_question4.get(user_language).get(option.option_text)
-
-            print()
-            print("jump_question_number")
-            print(jump_question_number)
-            print()
-
             jump_question = self._get_question(jump_question_number, user_language)
-
-            print()
-            print("jump_question")
-            print(jump_question)
-            print()
-
             options = self._get_options(jump_question.id)
-
-            
-
-
             bot.send_message(
                 user.id,
                 jump_question.title, 
