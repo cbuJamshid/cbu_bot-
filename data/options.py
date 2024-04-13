@@ -45,3 +45,82 @@ jump_options_question4 = {
         "бошқалар": 16,
     }
 }
+
+jump_options_no = {
+    "ru": ["нет", "затрудняюсь ответить", "улучшилась", "не изменилась"],
+    "uzlatin": ["yo'q", "javob berishim qiyin", "o‘zgarmadi", "yaxshilandi"],
+    "uzkiril": ["йўқ", "жавоб беришим қийин", "яхшиланди", "ўзгармади"]
+}
+
+jump_options_3 = {
+    "ru": {
+        "qish": ["сельское хозяйство"],
+        "prom": ["промышленность"],
+        "stroy": ["строительство"],
+        "torg": ["торговля"],
+        "pere": ["перевозка и хранение"],
+        "usl": ["услуги по проживанию"],
+        "info": ["информация и связь"],
+        "fin": ["финансовая деятельность"],
+        "obraz": ["образование"],
+        "zdrav": ["здравоохр. и соц. услуги"],
+        "iskus": ["искусство и развлечения"],
+        "pred": ["индив. предпринимательство"],
+        "drug": ["другое"],
+    },
+    "uzlatin": {
+        "qish": ["qishloq xo`jaligi"],
+        "prom": ["sanoat"],
+        "stroy": ["qurilish"],
+        "torg": ["savdo"],
+        "pere": ["tashish va saqlash"],
+        "usl": ["yashash bo‘yicha xizmatlar"],
+        "info": ["axborot va aloqa"],
+        "fin": ["moliyaviy faoliyat"],
+        "obraz": ["ta’lim"],
+        "zdrav": ["ijtimoiy xizmatlar"],
+        "iskus": ["san’at va ko‘ngil ochish"],
+        "pred": ["yakka tartib. tadbirkorlik"],
+        "drug": ["boshqalar"],
+    },
+    "uzkiril": {
+        "qish": ["қишлоқ хўжалиги"],
+        "prom": ["саноат"],
+        "stroy": ["қурилиш"],
+        "torg": ["савдо"],
+        "pere": ["ташиш ва сақлаш"],
+        "usl": ["яшаш бўйича хизматлар"],
+        "info": ["ахборот ва алоқа"],
+        "fin": ["молиявий фаолият"],
+        "obraz": ["таълим"],
+        "zdrav": ["ижтимоий хизматлар"],
+        "iskus": ["санъат ва кўнгил очиш"],
+        "pred": ["якка тартиб. тадбиркорлик"],
+        "drug": ["бошқалар"],
+    },
+}
+
+jump_options_8 = {
+    "ru": {
+        "ipotek": ["ипотечный кредит"],
+        "avto": ["автокредит"],
+        "potreb": ["др. потребительские кредиты"],
+        "mikrozaym": ["микрозайм"],
+        "drug": ["другое"],
+    },
+    "uzlatin": {
+        "ipotek": ["ipoteka krediti"],
+        "avto": ["avtokredit"],
+        "potreb": ["iste’mol kreditlari"],
+        "mikrozaym": ["mikroqarz"],
+        "drug": ["boshqalar"],
+    },
+    "uzkiril": {
+        "ipotek": ["ипотека кредити"],
+        "avto": ["автокредит"],
+        "potreb": ["истеъмол кредитлари"],
+        "mikrozaym": ["микроқарз"],
+        "drug": ["бошқалар"],
+    },
+}
+

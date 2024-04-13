@@ -1,11 +1,11 @@
 from telebot import TeleBot
-from utils import generate_option_markup, generate_next_markup
+from utils import generate_option_markup, generate_next_markup, send_survey_finish_message
 from DAL.Repository.UserRepository import UserRepository
 from DAL.Repository.QuestionRepository import QuestionRepository
 from DAL.Repository.OptionRepository import OptionRepository
 from DAL.Repository.ResponseRepository import ResponseRepository
 from Models.main import Question, Option, User
-from data.options import jump_options_question4
+from data.options import jump_options_question4, jump_options_no, jump_options_3
 
 
 class QuestionHandler:
@@ -37,25 +37,196 @@ class QuestionHandler:
         user = UserRepository.get(user_id)
         question_number = user.current_question_number
 
-        if question_number == 4:
-            user_language = user.language
-            question_id = QuestionRepository.getByLanguageNumber(user_language, question_number).id
-            question3_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
-            for response in question3_responses:
-                option = OptionRepository.getById(response.option_id)
-                jump_question_number = jump_options_question4.get(user_language).get(option.option_text)
-                if jump_question_number == 4:
-                    jump_question = self._get_question(jump_question_number, user_language)
-                    options = self._get_options(jump_question.id)
-                    bot.send_message(
-                        user.id,
-                        jump_question.title, 
-                        reply_markup=generate_option_markup(options, jump_question.number, jump_question.id, jump_question.is_single_option)
-                    )
-                    self.set_user_question_number(user, question_number)
-                    return
+        # if user answered all questions, it ends survey
+        if user.current_question_number > 53:
+            return send_survey_finish_message(user_id, user.language, bot)
 
-        question = self._get_question(user.current_question_number, user.language)        
+        
+        # question 4 with index of 18
+        q4_index = 18
+        if user.current_question_number == q4_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q4_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, question_number) # increments
+        
+        # question 7 with index of 21
+        q7_index = 21
+        if user.current_question_number == q7_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q7_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, 34) # increments till 34
+        
+        # question 9 with index of 23
+        q9_index = 23
+        if user.current_question_number == q9_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q9_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, question_number) # increments
+        
+        # question 21 with index of 35
+        q21_index = 35
+        if user.current_question_number == q21_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q21_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, 40) # increments
+        
+        # question 23 with index of 37
+        q23_index = 37
+        if user.current_question_number == q23_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q23_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, user.current_question_number) # increments
+        
+        # question 27 with index of 41
+        q27_index = 41
+        if user.current_question_number == q27_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q27_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, 44) # increments
+        
+        # question 31 with index of 45
+        q31_index = 45
+        if user.current_question_number == q31_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q31_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, 47) # increments
+        
+        # question 33 with index of 47
+        q33_index = 47
+        if user.current_question_number == q33_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q33_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, user.current_question_number) # increments
+        
+        # question 35 with index of 49
+        q35_index = 49
+        if user.current_question_number == q35_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q35_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, user.current_question_number) # increments
+        
+        # question 38 with index of 52
+        q38_index = 52
+        if user.current_question_number == q38_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q38_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, user.current_question_number) # increments
+                    bot.send_message(user_id, option.option_text)
+                    return send_survey_finish_message(user_id, user.language, bot)
+
+        if question_number in list(range(4,17)):
+            question_id = QuestionRepository.getByLanguageNumber(user.language, 3).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            if question_number == 4:
+                n = 0
+                for r in question_responses:
+                    option = OptionRepository.getById(r.option_id)
+                    if option.option_text in jump_options_3.get(user.language).get("qish"):
+                        n += 1
+                        bot.send_message(user_id, f"{question_number} incremented")
+                if n == 0:
+                    bot.send_message(user_id, question_number)
+                    self.skip_next_question(user, question_number) # increments
+
+            if question_number == 5:
+                n = 0
+                for r in question_responses:
+                    option = OptionRepository.getById(r.option_id)
+                    if option.option_text in jump_options_3.get(user.language).get("prom"):
+                        n += 1
+                        bot.send_message(user_id, f"{question_number} incremented")
+                if n == 0:
+                    bot.send_message(user_id, question_number)
+                    self.skip_next_question(user, question_number) # increments
+
+            if question_number == 6:
+                n = 0
+                for r in question_responses:
+                    option = OptionRepository.getById(r.option_id)
+                    if option.option_text in jump_options_3.get(user.language).get("stroy"):
+                        n += 1
+                        bot.send_message(user_id, f"{question_number} incremented")
+                if n == 0:
+                    bot.send_message(user_id, question_number)
+                    self.skip_next_question(user, question_number) # increments
+
+            if question_number == 7:
+                n = 0
+                for r in question_responses:
+                    option = OptionRepository.getById(r.option_id)
+                    if option.option_text in jump_options_3.get(user.language).get("torg"):
+                        n += 1
+                        bot.send_message(user_id, f"{question_number} incremented")
+                if n == 0:
+                    bot.send_message(user_id, question_number)
+                    self.skip_next_question(user, question_number) # increments
+            if question_number == 8:
+                n = 0
+                for r in question_responses:
+                    option = OptionRepository.getById(r.option_id)
+                    if option.option_text in jump_options_3.get(user.language).get("pere"):
+                        n += 1
+                        bot.send_message(user_id, f"{question_number} incremented")
+                if n == 0:
+                    bot.send_message(user_id, question_number)
+                    self.skip_next_question(user, question_number) # increments
+
+            if question_number == 9:
+                n = 0
+                for r in question_responses:
+                    option = OptionRepository.getById(r.option_id)
+                    if option.option_text in jump_options_3.get(user.language).get("usl"):
+                        n += 1
+                        bot.send_message(user_id, f"{question_number} incremented")
+                if n == 0:
+                    bot.send_message(user_id, question_number)
+                    self.skip_next_question(user, question_number) # increments
+
+            if question_number == 10:
+                n = 0
+                for r in question_responses:
+                    option = OptionRepository.getById(r.option_id)
+                    if option.option_text in jump_options_3.get(user.language).get("info"):
+                        n += 1
+                        bot.send_message(user_id, f"{question_number} incremented")
+                if n == 0:
+                    bot.send_message(user_id, question_number)
+                    self.skip_next_question(user, question_number) # increments
+
+
+        user = UserRepository.get(user_id)
+        question_number = user.current_question_number
+        question = self._get_question(question_number, user.language)        
         options = self._get_options(question.id)
         if question.is_single_option:  # multiple
             bot.send_message(
@@ -76,10 +247,10 @@ class QuestionHandler:
         self.set_user_question_number(user, question_number)
 
     def set_user_question_number(self, user: User, question_number: int) -> None:
-        # if question_number == user.current_question_number:
-        # question = QuestionRepository.getAll()
         UserRepository.set_question_number(user.id, question_number + 1)
-        # QuestionHandler.get_instance().send_question(bot, user.id)
+    
+    def skip_next_question(self, user: User, question_number: int) -> None:
+        UserRepository.set_question_number(user.id, question_number + 1)
 
     def _get_question(self, number: int, language: str) -> Question:
         return QuestionRepository.getByLanguageNumber(language, number)
