@@ -90,6 +90,7 @@ def handle_language_change_callback(call: CallbackQuery):
 @bot.callback_query_handler(func=lambda call: "questions" in call.data)
 def handle_response_callback(call: CallbackQuery):
     user_id = call.message.chat.id
+    user = UserRepository.get(user_id)
     question_id, question_number, option_id, is_multiple_option = extract_values_from_callback_data(
         call.data
     )
@@ -116,13 +117,8 @@ def handle_response_callback(call: CallbackQuery):
                 if int(response_option_id) == option_id:
                     button.text = SINGLE_OPTION_SELECTED_SYMBOL + button.text[1:]
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
-        QuestionHandler.get_instance().send_question(bot, user_id)
-
-    # user = UserRepository.get(user_id)
-    # if user.current_question_number == 4:
-    #     QuestionHandler.get_instance().send_question4(bot, user, option_id)
-    # else:
-    # QuestionHandler.get_instance().send_question(bot, user_id)
+        if user.current_question_number - 1 == question_number:
+            QuestionHandler.get_instance().send_question(bot, user.id)
 
 
 @bot.callback_query_handler(func=lambda call: "next" in call.data)
@@ -131,11 +127,8 @@ def handle_next_question_callback(call: CallbackQuery):
     user = UserRepository.get(user_id)
     _, question_number = call.data.split("_")
     question_number = int(question_number)
-    QuestionHandler.get_instance().send_question(bot, user.id)
-
-    # if user.current_question_number == question_number:
-    #     UserRepository.set_question_number(user_id, question_number + 1)
-    #     QuestionHandler.get_instance().send_question4(bot, user)
+    if user.current_question_number - 1 == question_number:
+        QuestionHandler.get_instance().send_question(bot, user.id)
     return
 
 
