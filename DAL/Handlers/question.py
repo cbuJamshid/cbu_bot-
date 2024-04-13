@@ -41,7 +41,6 @@ class QuestionHandler:
         if user.current_question_number > 53:
             return send_survey_finish_message(user_id, user.language, bot)
 
-        
         # question 4 with index of 18
         q4_index = 18
         if user.current_question_number == q4_index + 1:
@@ -222,7 +221,6 @@ class QuestionHandler:
                 if n == 0:
                     bot.send_message(user_id, question_number)
                     self.skip_next_question(user, question_number) # increments
-
 
         user = UserRepository.get(user_id)
         question_number = user.current_question_number
