@@ -13,6 +13,7 @@ from constants import (
     SINGLE_OPTION_SELECTED_SYMBOL,
     MULTIPLE_OPTION_SELECTED_SYMBOL,
 )
+from data.options import jump_options_question4
 
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -117,7 +118,17 @@ def handle_response_callback(call: CallbackQuery):
                 if int(response_option_id) == option_id:
                     button.text = SINGLE_OPTION_SELECTED_SYMBOL + button.text[1:]
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
-        if user.current_question_number - 1 == question_number:
+
+        # check if last question in users options
+        if question_number in range(5, 17):
+            third_question_id = QuestionRepository.getByLanguageNumber(user.language, 3).id
+            responses_asc_order = ResponseRepository.get_by_question_and_user_id(user.id, third_question_id)
+            last_reponse_option = OptionRepository.getById(responses_asc_order[-1].option_id)
+            last_reponse_question_number = jump_options_question4[user.language][last_reponse_option.option_text]
+            if question_number == last_reponse_question_number:
+                QuestionHandler.get_instance().send_question(bot, user.id)
+
+        elif user.current_question_number - 1 == question_number:
             QuestionHandler.get_instance().send_question(bot, user.id)
 
 

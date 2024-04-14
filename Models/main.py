@@ -47,3 +47,9 @@ class Response(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     question_id = Column(Integer, ForeignKey('questions.id'))
     option_id = Column(Integer, ForeignKey('options.id'))
+
+    def __repr__(self):
+        return f"User: {self.user_id} Question: {self.question_id} Option: {self.option_id}"
+
+    def __str__(self):
+        return f"User: {self.user_id} Question: {self.question_id} Option: {self.option_id}"

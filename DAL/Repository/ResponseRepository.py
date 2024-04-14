@@ -64,7 +64,7 @@ class ResponseRepository:
     @staticmethod
     def get_by_question_and_user_id(user_id: int, question_id: int) -> list[Response]:
         with Session() as session:
-            return session.query(Response).filter(Response.user_id == user_id, Response.question_id == question_id).all()
+            return session.query(Response).filter(Response.user_id == user_id, Response.question_id == question_id).order_by(Response.option_id.asc()).all()
 
     @staticmethod
     def get_single_by_question_user_id(user_id: int, question_id: int) -> Response:
