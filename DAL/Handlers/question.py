@@ -5,7 +5,7 @@ from DAL.Repository.QuestionRepository import QuestionRepository
 from DAL.Repository.OptionRepository import OptionRepository
 from DAL.Repository.ResponseRepository import ResponseRepository
 from Models.main import Question, Option, User
-from data.options import jump_options_question4, jump_options_no, jump_options_3
+from data.options import jump_options_question4, jump_options_no, jump_options_question9
 
 
 class QuestionHandler:
@@ -52,6 +52,31 @@ class QuestionHandler:
                     reply_markup=generate_option_markup(options, jump_question.number, jump_question.id, jump_question.is_single_option)
                 )
             self.set_user_question_number(user, 16)
+            return
+        
+        if user.current_question_number == 25:
+            user_language = user.language
+            question_id = QuestionRepository.getByLanguageNumber(user_language, 22).id
+            responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for response in responses:
+                option = OptionRepository.getById(response.option_id)
+                jump_question_number = jump_options_question9.get(user_language).get(option.option_text)
+                next_jump_question_number = jump_question_number + 1
+                jump_question = self._get_question(jump_question_number, user_language)
+                next_jump_question = self._get_question(next_jump_question_number, user_language)
+                options = self._get_options(jump_question.id)
+                next_options = self._get_options(next_jump_question.id)
+                bot.send_message(
+                    user.id,
+                    jump_question.title, 
+                    reply_markup=generate_option_markup(options, jump_question.number, jump_question.id, jump_question.is_single_option)
+                )
+                bot.send_message(
+                    user.id,
+                    next_jump_question.title, 
+                    reply_markup=generate_option_markup(next_options, next_jump_question.number, next_jump_question.id, next_jump_question.is_single_option)
+                )
+            self.set_user_question_number(user, 34)
             return
 
         # if user answered all questions, it ends survey
@@ -157,7 +182,6 @@ class QuestionHandler:
                 option = OptionRepository.getById(r.option_id)
                 if option.option_text in jump_options_no.get(user.language):
                     self.skip_next_question(user, user.current_question_number) # increments
-                    bot.send_message(user_id, option.option_text)
                     return send_survey_finish_message(user_id, user.language, bot)
 
 

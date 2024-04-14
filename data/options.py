@@ -46,6 +46,30 @@ jump_options_question4 = {
     }
 }
 
+jump_options_question9 = {
+    "ru": {
+        "ипотечный кредит": 25,
+        "автокредит": 27,
+        "др. потребительские кредиты": 29,
+        "микрозайм": 31,
+        "другое": 33,
+    },
+    "uzlatin": {
+        "ipoteka krediti": 25,
+        "avtokredit": 27,
+        "iste’mol kreditlari": 29,
+        "mikroqarz": 31,
+        "boshqalar": 33,
+    },
+    "uzkiril": {
+        "ипотека кредити": 25,
+        "автокредит": 27,
+        "истеъмол кредитлари": 29,
+        "микроқарз": 31,
+        "бошқалар": 33,
+    },
+}
+
 jump_options_no = {
     "ru": ["нет", "затрудняюсь ответить", "улучшилась", "не изменилась"],
     "uzlatin": ["yo'q", "javob berishim qiyin", "o‘zgarmadi", "yaxshilandi"],
