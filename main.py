@@ -39,51 +39,12 @@ def handle_start_command(message: Message):
         reply_markup=generate_markup_languages()
     )
 
-
-# @bot.message_handler(commands=["users"])
-# def handle_users_command(message: Message):
-#     user_id = message.chat.id
-#     users = UserRepository.get_all()
-#     for user in users:
-#         bot.send_message(user_id, f"ID: {user.id}, Language: {user.language}, Question: {user.current_question_number}")
-
-
-# @bot.message_handler(commands=["responses"])
-# def handle_responses_command(message: Message):
-#     user_id = message.chat.id
-#     responses = ResponseRepository.get_all()
-#     for r in responses:
-#         bot.send_message(user_id, f"ID: {r.id}, USER_ID: {r.user_id}, QUESTION_ID: {r.question_id}, OPTION_ID: {r.option_id}")
-
-
-
-
-# @bot.message_handler(commands=["questions"])
-# def handle_responses_command(message: Message):
-#     user_id = message.chat.id
-#     qs = QuestionRepository.getAll()
-#     for q in qs:
-#         bot.send_message(user_id, f"ID: {q.id} NUM: {q.number} QUESTION: {q.title}")
-
-
-# @bot.message_handler(commands=["options"])
-# def handle_responses_command(message: Message):
-#     user_id = message.chat.id
-#     user = UserRepository.get(user_id)
-#     question = QuestionRepository.getByLanguageNumber("uzlatin", user.current_question_number)
-#     options = OptionRepository.getByQuestionId(3)
-#     # for q in qs:
-#     #     bot.send_message(user_id, f"ID: {q.number}, QUESTION: {q.title}")
-#     for option in options:
-#         bot.send_message(user_id, f"ID: {option.option_text}")
-
-
 # Callback handlers
 @bot.callback_query_handler(func=lambda call: call.data in ["ru", "uzlatin", "uzkiril"])
 def handle_language_change_callback(call: CallbackQuery):
     user_id = call.message.chat.id
     UserRepository.set_language(user_id, call.data)
-    UserRepository.set_question_number(user_id, 21)
+    UserRepository.set_question_number(user_id, 1)
     QuestionHandler.get_instance().send_question(bot, user_id)
 
 
