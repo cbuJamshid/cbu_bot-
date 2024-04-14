@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
+from sqlalchemy import Column, BigInteger,Integer, String, Boolean, DateTime, ForeignKey
 
 Base = declarative_base()
 
@@ -7,7 +7,7 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(BigInteger, primary_key=True)
     language = Column(String(16))
     current_question_number = Column(Integer)
     is_survey_finished = Column(Boolean)

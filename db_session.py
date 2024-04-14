@@ -4,10 +4,10 @@ from sqlalchemy.orm import sessionmaker
 
 url_object = URL.create(
     "postgresql+psycopg2",
-    username="abbossth",
-    password="PythonBot2024.",  # plain (unescaped) text
-    host="cbusurvey.postgres.database.azure.com",
-    database="mbSurveyBotDb",
+    username="olicqunzvtebyx",
+    password="4254360e81b06ef068c7a07eda57e463ba621e87afe66f45f26de0a500ed2a29",  # plain (unescaped) text
+    host="ec2-34-251-233-253.eu-west-1.compute.amazonaws.com",
+    database="d4pmr6b9sqg93s",
     port=5432
 )
 
