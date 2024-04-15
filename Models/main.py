@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, relationship
-from sqlalchemy import Column, BigInteger,Integer, String, Boolean, DateTime, ForeignKey
+from sqlalchemy import Column, BigInteger, Integer, String, Boolean, DateTime, ForeignKey
 
 Base = declarative_base()
 
@@ -44,7 +44,7 @@ class Response(Base):
     __tablename__ = "responses"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
+    user_id = Column(BigInteger, ForeignKey('users.id'))
     question_id = Column(Integer, ForeignKey('questions.id'))
     option_id = Column(Integer, ForeignKey('options.id'))
 
