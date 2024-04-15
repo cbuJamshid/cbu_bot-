@@ -58,58 +58,58 @@ def handle_language_change_callback(call: CallbackQuery):
 @bot.callback_query_handler(func=lambda call: "questions" in call.data)
 def handle_response_callback(call: CallbackQuery):
     user_id = call.message.chat.id
-    try:
-        user = UserRepository.get(user_id)
-        question_id, question_number, option_id, is_multiple_option = extract_values_from_callback_data(
-            call.data
-        )
-        options = OptionRepository.getByQuestionId(question_id)
-        markup = generate_option_markup(options, question_number, question_id, is_multiple_option)
+    # try:
+    user = UserRepository.get(user_id)
+    question_id, question_number, option_id, is_multiple_option = extract_values_from_callback_data(
+        call.data
+    )
+    options = OptionRepository.getByQuestionId(question_id)
+    markup = generate_option_markup(options, question_number, question_id, is_multiple_option)
 
-        if is_multiple_option:
-            ResponseRepository.delete_or_create(user_id, question_id, option_id)
-            users_responses = ResponseRepository.get_by_question_and_user_id(user_id, question_id)
-            selected_option_ids = [response.option_id for response in users_responses]
-            # Showing selected options with 'selected_symbol'
-            for row in markup.keyboard:
-                for button in row:
-                    _, _, response_option_id, _, _ = button.callback_data.split("_")
-                    if int(response_option_id) in selected_option_ids:
-                        button.text = MULTIPLE_OPTION_SELECTED_SYMBOL + button.text[1:]
-            bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
-        else:
-            ResponseRepository.update_or_create(user_id, question_id, option_id)
-            # Showing selected options with 'selected_symbol'
-            for row in markup.keyboard:
-                for button in row:
-                    _, _, response_option_id, _, _ = button.callback_data.split("_")
-                    if int(response_option_id) == option_id:
-                        button.text = SINGLE_OPTION_SELECTED_SYMBOL + button.text[1:]
-            bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
+    if is_multiple_option:
+        ResponseRepository.delete_or_create(user_id, question_id, option_id)
+        users_responses = ResponseRepository.get_by_question_and_user_id(user_id, question_id)
+        selected_option_ids = [response.option_id for response in users_responses]
+        # Showing selected options with 'selected_symbol'
+        for row in markup.keyboard:
+            for button in row:
+                _, _, response_option_id, _, _ = button.callback_data.split("_")
+                if int(response_option_id) in selected_option_ids:
+                    button.text = MULTIPLE_OPTION_SELECTED_SYMBOL + button.text[1:]
+        bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
+    else:
+        ResponseRepository.update_or_create(user_id, question_id, option_id)
+        # Showing selected options with 'selected_symbol'
+        for row in markup.keyboard:
+            for button in row:
+                _, _, response_option_id, _, _ = button.callback_data.split("_")
+                if int(response_option_id) == option_id:
+                    button.text = SINGLE_OPTION_SELECTED_SYMBOL + button.text[1:]
+        bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=markup)
 
 
-            # bot.send_message(user_id, f"Q_NUMBER: {user.current_question_number}")
-            # check if last question in users options
-            if question_number in range(5, 17):
-                third_question_id = QuestionRepository.getByLanguageNumber(user.language, 3).id
-                responses_asc_order = ResponseRepository.get_by_question_and_user_id(user.id, third_question_id)
-                last_reponse_option = OptionRepository.getById(responses_asc_order[-1].option_id)
-                last_reponse_question_number = jump_options_question4[user.language][last_reponse_option.option_text]
-                if question_number == last_reponse_question_number:
-                    QuestionHandler.get_instance().send_question(bot, user.id)
-            elif question_number in range(25, 35):
-                ninth_question_id = QuestionRepository.getByLanguageNumber(user.language, 22).id
-                responses_asc_order_9 = ResponseRepository.get_by_question_and_user_id(user.id, ninth_question_id)
-                last_reponse_option_9 = OptionRepository.getById(responses_asc_order_9[-1].option_id)
-                last_reponse_question_number_9 = jump_options_question9[user.language][last_reponse_option_9.option_text] + 1
-                # bot.send_message(user_id, f"{question_number}, last: {last_reponse_question_number_9}")
-                if question_number == last_reponse_question_number_9:
-                    QuestionHandler.get_instance().send_question(bot, user.id)
-            elif user.current_question_number - 1 == question_number:
+        # bot.send_message(user_id, f"Q_NUMBER: {user.current_question_number}")
+        # check if last question in users options
+        if question_number in range(5, 17):
+            third_question_id = QuestionRepository.getByLanguageNumber(user.language, 3).id
+            responses_asc_order = ResponseRepository.get_by_question_and_user_id(user.id, third_question_id)
+            last_reponse_option = OptionRepository.getById(responses_asc_order[-1].option_id)
+            last_reponse_question_number = jump_options_question4[user.language][last_reponse_option.option_text]
+            if question_number == last_reponse_question_number:
                 QuestionHandler.get_instance().send_question(bot, user.id)
-    except Exception as _ex:
-        print(f"Unhandled Error occured while clicking questions (options) callback {_ex}")
-        return send_error_message_to_user(user_id, bot)
+        elif question_number in range(25, 35):
+            ninth_question_id = QuestionRepository.getByLanguageNumber(user.language, 22).id
+            responses_asc_order_9 = ResponseRepository.get_by_question_and_user_id(user.id, ninth_question_id)
+            last_reponse_option_9 = OptionRepository.getById(responses_asc_order_9[-1].option_id)
+            last_reponse_question_number_9 = jump_options_question9[user.language][last_reponse_option_9.option_text] + 1
+            # bot.send_message(user_id, f"{question_number}, last: {last_reponse_question_number_9}")
+            if question_number == last_reponse_question_number_9:
+                QuestionHandler.get_instance().send_question(bot, user.id)
+        elif user.current_question_number - 1 == question_number:
+            QuestionHandler.get_instance().send_question(bot, user.id)
+    # except Exception as _ex:
+    #     print(f"Unhandled Error occured while clicking questions (options) callback {_ex}")
+    #     return send_error_message_to_user(user_id, bot)
 
 @bot.callback_query_handler(func=lambda call: "next" in call.data)
 def handle_next_question_callback(call: CallbackQuery):
