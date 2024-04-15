@@ -48,7 +48,7 @@ def handle_language_change_callback(call: CallbackQuery):
     user_id = call.message.chat.id
     try:
         UserRepository.set_language(user_id, call.data)
-        UserRepository.set_question_number(user_id, 21)
+        UserRepository.set_question_number(user_id, 1)
         QuestionHandler.get_instance().send_question(bot, user_id)
     except Exception as _ex:
         print(f"Unhandled Error occured while clicking language callback {_ex}")
