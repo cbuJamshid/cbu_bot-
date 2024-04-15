@@ -32,7 +32,7 @@ def generate_next_markup(lang, number):
         description = "Keyingi savolga o'tish"
         btn_text = "Keyingi savol"
     elif lang == "uzkiril":
-        description = "Кейинги саволга отиш"
+        description = "Кейинги саволга ўтиш"
         btn_text = "Кейинги савол"
 
     button = types.InlineKeyboardButton(text=f">> {btn_text}", callback_data=f"next_{number}")
@@ -60,3 +60,5 @@ def send_survey_finish_message(chat_id, lang, bot: TeleBot) -> None:
     else:
         return bot.send_message(chat_id, f"<b>Благодарим вас за участие в нашем опросе! Ваше мнение для нас ценно. </b>", parse_mode='HTML')
 
+def send_error_message_to_user(chat_id, bot: TeleBot):
+    return bot.send_message(chat_id, f"Кутилмаган хатолик! Ботимизда сўровномани бошлаш учун /start буйруғини юборинг. \n\nНеожиданная ошибка! Отправьте команду /start чтобы начать опрос на нашем боте.")

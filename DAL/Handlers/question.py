@@ -53,7 +53,19 @@ class QuestionHandler:
                 )
             self.set_user_question_number(user, 16)
             return
-        
+
+        # question 4 with index of 18
+        q10_index = 23
+        if user.current_question_number == q10_index + 1:
+            question_id = QuestionRepository.getByLanguageNumber(user.language, q10_index).id
+            question_responses = ResponseRepository.get_by_question_and_user_id(user.id, question_id)
+            for r in question_responses:
+                option = OptionRepository.getById(r.option_id)
+                if option.option_text in jump_options_no.get(user.language):
+                    self.skip_next_question(user, 25)  # increments
+                    # bot.send_message(user_id, f"23 -> incremented to 25")
+                    user.current_question_number = 25
+
         if user.current_question_number == 25:
             user_language = user.language
             question_id = QuestionRepository.getByLanguageNumber(user_language, 22).id
@@ -68,12 +80,12 @@ class QuestionHandler:
                 next_options = self._get_options(next_jump_question.id)
                 bot.send_message(
                     user.id,
-                    jump_question.title, 
+                    jump_question.title,
                     reply_markup=generate_option_markup(options, jump_question.number, jump_question.id, jump_question.is_single_option)
                 )
                 bot.send_message(
                     user.id,
-                    next_jump_question.title, 
+                    next_jump_question.title,
                     reply_markup=generate_option_markup(next_options, next_jump_question.number, next_jump_question.id, next_jump_question.is_single_option)
                 )
             self.set_user_question_number(user, 34)
@@ -224,5 +236,5 @@ class QuestionHandler:
         if lang == "uzlatin":
             description = "Keyingi savolga o'tish"
         elif lang == "uzkiril":
-            description = "Кейинги саволга отиш"
+            description = "Кейинги саволга ўтиш"
         return bot.send_message(user_id, description, reply_markup=generate_next_markup(lang, number))
