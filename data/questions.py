@@ -410,8 +410,8 @@ questions_uz_kiril = [
         "number": 0,
         "question": "Ҳозирги яшаш жойингизни кўрсатинг:",
         "answers": ["Қорақалпоғистон Республикаси", "Андижон вилояти", "Бухоро вилояти", "Жиззах вилояти",
-                    "Қашқадарё вилояти", "Навои вилояти", "Наманган вилояти", "Самарқанд вилояти",
-                    "Сурхандарё вилояти", "Сирдарё вилояти", "Тошкент тумани", "Фарғона вилояти",
+                    "Қашқадарё вилояти", "Навоий вилояти", "Наманган вилояти", "Самарқанд вилояти",
+                    "Сурхандарё вилояти", "Сирдарё вилояти", "Тошкент вилояти", "Фарғона вилояти",
                     "Хоразм вилояти", "Тошкент шаҳри"],
         "has_sub_question": False,
         "multiple_option_selection": False
@@ -428,11 +428,11 @@ questions_uz_kiril = [
         "question": "Фаолият турлари бўйича даромад келтирувчи уй хўжалигингиз аъзолари сонини белгиланг:",
         "has_sub_question": False,
         "multiple_option_selection": True,
-        "answers": ["қишлоқ хўжалиги", "саноат", "қурилиш",
-                    "савдо", "ташиш ва сақлаш", "яшаш бўйича хизматлар",
-                    "ахборот ва алоқа", "молиявий фаолият",
-                    "таълим", "ижтимоий хизматлар",
-                    "санъат ва кўнгил очиш", "якка тартиб. тадбиркорлик",
+        "answers": ["қишлоқ, ўрмон ва балиқ хўжалиги", "саноат", "қурилиш",
+                    "савдо", "ташиш ва сақлаш", "яшаш ва овқатланиш бўйича хизматлар",
+                    "ахборот ва алоқа", "молиявий ва суғурта фаолияти",
+                    "таълим", "соғлиқни сақлаш ва ижтимоий хизматлар",
+                    "санъат ва кўнгил очиш", "якка тартибдаги тадбиркорлик",
                     "бошқалар"]
     },
     {
@@ -584,7 +584,7 @@ questions_uz_kiril = [
     },
     {
         "number": 11,
-        "question": "Ушбу ипотека кредитлар бўйича ойлик тўловингиз миқдори қанча?",
+        "question": "Ушбу ипотека кредити бўйича ойлик тўловингиз миқдори қанча?",
         "answers": ["2 млн сўмдан кам", "2 дан 4 млн сўмгача", "4 дан 6 млн сўмгача", "6 дан 8 млн сўмгача",
                     "8 дан 10 млн сўмгача", "10 дан 12 млн сўмгача", "12 дан 14 млн сўмгача", "14 дан 16 млн сўмгача",
                     "16 дан 18 млн сўмгача", "18 дан 20 млн сўмгача", "20 млн сўм ва ундан ортиқ"],
@@ -633,7 +633,7 @@ questions_uz_kiril = [
     },
     {
         "number": 17,
-        "question": "Ушбу микроқарз кредитлари ойлик тўловингиз миқдори қанча?",
+        "question": "Ушбу микроқарз бўйича ойлик тўловингиз миқдори қанча?",
         "answers": ["2 млн сўмдан кам", "2 дан 4 млн сўмгача", "4 дан 6 млн сўмгача", "6 дан 8 млн сўмгача",
                     "8 дан 10 млн сўмгача", "10 дан 12 млн сўмгача", "12 дан 14 млн сўмгача", "14 дан 16 млн сўмгача",
                     "16 дан 18 млн сўмгача", "18 дан 20 млн сўмгача", "20 млн сўм ва ундан ортиқ"],
@@ -642,7 +642,7 @@ questions_uz_kiril = [
     },
     {
         "number": 18,
-        "question": "Ушбу микроқарз кредитлари тўловлари бўйича қанча муддат қолган?",
+        "question": "Ушбу микроқарз тўловлари бўйича қанча муддат қолган?",
         "answers": ["1 йилдан кам", "1 йилдан 2 йилгача", "2 йилдан 3 йилгача", "3 йилдан 4 йилгача",
                     "5 йил ва ундан ортиқ"],
         "has_sub_question": False,
@@ -650,7 +650,7 @@ questions_uz_kiril = [
     },
     {
         "number": 19,
-        "question": "Бошқа кредитлар ойлик тўловингиз миқдори қанча?",
+        "question": "Бошқа кредитлар бўйича ойлик тўловингиз миқдори қанча?",
         "answers": ["2 млн сўмдан кам", "2 дан 4 млн сўмгача", "4 дан 6 млн сўмгача", "6 дан 8 млн сўмгача",
                     "8 дан 10 млн сўмгача", "10 дан 12 млн сўмгача", "12 дан 14 млн сўмгача", "14 дан 16 млн сўмгача",
                     "16 дан 18 млн сўмгача", "18 дан 20 млн сўмгача", "20 млн сўм ва ундан ортиқ"],
@@ -675,13 +675,15 @@ questions_uz_kiril = [
     {
         "number": 22,
         "question": "Ушбу кредит ёки қарзларни қайси мақсадларда олгансиз? Бир нечта вариантни танлашингиз мумкин",
-        "answers": ["уй-жой олиш", "автотранспорт олиш", "истеъмол товарларини олиш",
-                    "кундалик харажатлар", "даволаниш", "таълим", "дам олиш", "хус. тадбиркорликни ривож.",
+        "answers": ["уй-жой сотиб олиш", "автотранспорт сотиб олиш", "истеъмол товарларини сотиб олиш",
+                    "кундалик харажатлар", "даволаниш", "таълим", "дам олиш", "хусусий тадбиркорликни ривожлантириш",
                     "бошқа кредитни тўлаш", "тўй маросимини ўтказиш", "уй-жойни таъмирлаш", "бошқалар"],
         "has_sub_question": False,
         "multiple_option_selection": True,
     },
     {
+
+
         "number": 23,
         "question": "Ушбу кредитлар гаров билан таъминланганми?",
         "answers": ["ҳа", "йўқ"],
@@ -716,15 +718,15 @@ questions_uz_kiril = [
     },
     {
         "number": 27,
-        "question": "Хозирда уй хўжалигингиз аъзоларидан биронтасида номолиявий ташкилотлар олдида қарз мажбуриятлари мавжудми (масалан, уй-жой, автомашина, маиший техника, электроника ва бошқаларни бўлиб тўлаш)?",
+        "question": "Хозирда уй хўжалигингиз аъзоларидан бирортасида номолиявий ташкилотлар олдида қарз мажбуриятлари мавжудми (масалан, уй-жой, автомашина, маиший техника, электроника ва бошқаларни бўлиб тўлаш)?",
         "answers": ["ҳа", "йўқ"],
         "has_sub_question": False,
         "multiple_option_selection": False,
     },
     {
         "number": 28,
-        "question": "Ушбу қарзларни қайси мақсадда олинган? Бир нечта вариантни танлашингиз мумкин",
-        "answers": ["уй-жой олиш", "автотранспорт олиш", "истеъмол товарларини олиш",
+        "question": "Ушбу қарзларни қайси мақсадда олгансиз? Бир нечта вариантни танлашингиз мумкин",
+        "answers": ["уй-жой сотиб олиш", "автотранспорт сотиб олиш", "истеъмол товарларини сотиб олиш",
                     "даволаниш", "таълим", "дам олиш", "тўй маросимини ўтказиш", "уй-жойни таъмирлаш", 
                     "бошқалар"],
         "has_sub_question": False,
@@ -771,7 +773,7 @@ questions_uz_kiril = [
     {
         "number": 34,
         "question": "Ойлик тўловларни амалга оширишдаги қийинчиликларни қандай бартараф этмоқчисиз? Бир нечта вариантни танлашингиз мумкин",
-        "answers": ["кўчмас мулкни сотиш/ижара", "машина сотиш", "оила харажатларини камайтириш", "иш қидириш", "янги кредит олиш", "бошқалар", "жавоб беришим қийин"],
+        "answers": ["кўчмас мулкни сотиш ёки ижарага бериш", "автомашинани сотиш", "уй-хўжалиги харажатларини камайтириш", "қўшимча иш қидириш", "янги кредит олиш", "бошқалар", "жавоб беришим қийин"],
         "has_sub_question": False,
         "multiple_option_selection": True,
     },
@@ -785,7 +787,7 @@ questions_uz_kiril = [
     {
         "number": 36,
         "question": "Нима учун кредит, микроқарз ажратиш рад этилган ёки сўралган миқдор камайтирилган? Бир нечта вариантни танлашингиз мумкин",
-        "answers": ["Иш жойининг йўқлиги", "Иш ҳақининг камлиги", "Гаровнинг йўқлиги", "гаровнинг этарли эмаслиги", "Бошқа кредитнинг мавжудлиги", "ёмон кредит тарихи", "бошқалар"],
+        "answers": ["доимий иш жойининг мажуд эмаслиги", "Иш ҳақининг етарли эмаслиги", "гаровнинг йўқлиги", "гаровнинг этарли эмаслиги", "бошқа кредитлар мавжудлиги", "ёмон кредит тарихи", "бошқалар"],
         "has_sub_question": False,
         "multiple_option_selection": True,
     },
@@ -806,8 +808,8 @@ questions_uz_kiril = [
     {
         "number": 39,
         "question": "Ушбу кредит ёки қарзларни қайси мақсадларда олмоқчисиз? Бир нечта вариантни танлашингиз мумкин",
-        "answers": ["уй-жой олиш", "автотранспорт олиш", "истеъмол товарларини олиш",
-                    "кундалик харажатлар", "даволаниш", "таълим", "дам олиш", "хус. тадбиркорликни ривож.",
+        "answers": ["уй-жой сотиб олиш", "автотранспорт сотиб олиш", "истеъмол товарларини сотиб олиш",
+                    "кундалик харажатлар", "даволаниш", "таълим", "дам олиш", "хусусий тадбиркорликни ривожлантириш",
                     "бошқа кредитни тўлаш", "тўй маросимини ўтказиш", "уй-жойни таъмирлаш", "бошқалар"],
         "has_sub_question": False,
         "multiple_option_selection": True,
@@ -821,8 +823,8 @@ questions_uz_latin = [
         "number": 0,
         "question": "Hozirgi yashash joyingizni ko‘rsating:",
         "answers": ["Qoraqalpog‘iston Respublikasi", "Andijon viloyati", "Buxoro viloyati", "Jizzax viloyati",
-                    "Qashqadaryo viloyati", "Navoi viloyati", "Namangan viloyati", "Samarqand viloyati",
-                    "Surxandaryo viloyati", "Sirdaryo viloyati", "Toshkent tumani", "Farg‘ona viloyati",
+                    "Qashqadaryo viloyati", "Navoiy viloyati", "Namangan viloyati", "Samarqand viloyati",
+                    "Surxandaryo viloyati", "Sirdaryo viloyati", "Toshkent viloyati", "Farg‘ona viloyati",
                     "Xorazm viloyati", "Toshkent shahri"],
         "has_sub_question": False,
         "multiple_option_selection": False
@@ -839,11 +841,11 @@ questions_uz_latin = [
         "question": "Faoliyat turlari bo‘yicha daromad keltiruvchi uy xo‘jaligingiz a’zolari sonini belgilang:",
         "has_sub_question": False,
         "multiple_option_selection": True,
-        "answers": ["qishloq xo`jaligi", "sanoat", "qurilish",
-                    "savdo", "tashish va saqlash", "yashash bo‘yicha xizmatlar",
-                    "axborot va aloqa", "moliyaviy faoliyat",
-                    "ta’lim", "ijtimoiy xizmatlar",
-                    "san’at va ko‘ngil ochish", "yakka tartib. tadbirkorlik",
+        "answers": ["qishloq, o‘rmon va baliq xo`jaligi", "sanoat", "qurilish",
+                    "savdo", "tashish va saqlash", "yashash va ovqatlanish bo‘yicha xizmatlar",
+                    "axborot va aloqa", "moliyaviy va sug‘urta faoliyati",
+                    "ta’lim", "sog‘liqni saqlash va ijtimoiy xizmatlar",
+                    "san’at va ko‘ngil ochish", "yakka tartibdagi tadbirkorlik",
                     "boshqalar"]
     },
     {
@@ -1046,7 +1048,7 @@ questions_uz_latin = [
     },
     {
         "number": 17,
-        "question": "Ushbu mikroqarz kreditlari bo‘yicha oylik to‘lovingiz miqdori qancha?",
+        "question": "Ushbu mikroqarz bo‘yicha oylik to‘lovingiz miqdori qancha?",
         "answers": ["2 mln so‘mdan kam", "2 dan 4 mln so‘mgacha", "4 dan 6 mln so‘mgacha", "6 dan 8 mln so‘mgacha",
                     "8 dan 10 mln so‘mgacha", "10 dan 12 mln so‘mgacha", "12 dan 14 mln so‘mgacha", "14 dan 16 mln so‘mgacha",
                     "16 dan 18 mln so‘mgacha", "18 dan 20 mln so‘mgacha", "20 mln so‘m va undan ortiq"],
@@ -1055,7 +1057,7 @@ questions_uz_latin = [
     },
     {
         "number": 18,
-        "question": "Ushbu mikroqarz krediti to‘lovlari bo‘yicha qancha muddat qolgan?",
+        "question": "Ushbu mikroqarz to‘lovlari bo‘yicha qancha muddat qolgan?",
         "answers": ["1 yildan kam", "1 yildan 2 yilgacha", "2 yildan 3 yilgacha", "3 yildan 4 yilgacha", "4 yildan 5 yilgacha",
                     "5 yil va undan ortiq"],
         "has_sub_question": False,
@@ -1089,7 +1091,7 @@ questions_uz_latin = [
         "number": 22,
         "question": "Ushbu kredit yoki qarzlarni qaysi maqsadlarda olgansiz? Bir nechta variantni tanlashingiz mumkin",
         "answers": ["uy-joy sotib olish", "avtotransport olish", "iste’mol tovarlarini olish",
-                    "kundalik xarajatlar", "davolanish", "ta’lim", "dam olish", "xus. tadbirkorlikni rivoj.",
+                    "kundalik xarajatlar", "davolanish", "ta’lim", "dam olish", "xususiy tadbirkorlikni rivojlantirish",
                     "boshqa kredit to‘lash", "to‘y marosimini o‘tkazish", "uy-joyni ta’mirlash", "boshqalar"],
         "has_sub_question": False,
         "multiple_option_selection": True,
@@ -1136,7 +1138,7 @@ questions_uz_latin = [
     },
     {
         "number": 28,
-        "question": "Ushbu qarzlarni qaysi maqsadda olingan? Bir nechta variantni tanlashingiz mumkin",
+        "question": "Ushbu qarzlarni qaysi maqsadlarda olgansiz? Bir nechta variantni tanlashingiz mumkin",
         "answers": ["uy-joy sotib olish", "avtotransport olish", "iste’mol tovarlarini olish",
                     "davolanish", "ta’lim", "dam olish", "to‘y marosimini o‘tkazish", "uy-joyni ta’mirlash", "boshqalar"],
         "has_sub_question": False,
@@ -1184,7 +1186,7 @@ questions_uz_latin = [
     {
         "number": 34,
         "question": "Oylik to‘lovlarni amalga oshirishdagi qiyinchiliklarni qanday bartaraf etmoqchisiz? Bir nechta variantni tanlashingiz mumkin",
-        "answers": ["ko‘chmas mulkni sotish/ijara", "avtomoshinani sotish", "oila xarajatlarini kamaytirish", "ish qidirish", "yangi kredit olish", "boshqalar", "javob berishim qiyin"],
+        "answers": ["ko‘chmas mulkni sotish yoki ijaraga berish", "avtomoshinani sotish", "uy xo‘jaligi xarajatlarini kamaytirish", "qo‘shimcha ish qidirish", "yangi kredit olish", "boshqalar", "javob berishim qiyin"],
         "has_sub_question": False,
         "multiple_option_selection": True,
     },
@@ -1198,7 +1200,7 @@ questions_uz_latin = [
     {
         "number": 36,
         "question": "Nima uchun kredit, mikroqarz ajratish rad etilgan yoki so‘ralgan miqdor kamaytirilgan? Bir nechta variantni tanlashingiz mumkin",
-        "answers": ["Ish joyining yo`qligi", "Ish haqining kamligi", "Garovning yo`qligi", "Garovning yetarli emasligi", "Boshqa kreditning mavjudligi", "Yomon kredit tarixi", "Boshqalar"],
+        "answers": ["doimiy ish joyining yo`qligi", "ish haqining kamligi", "garovning yo`qligi", "garovning yetarli emasligi", "boshqa kreditlar mavjudligi", "yomon kredit tarixi", "boshqalar"],
         "has_sub_question": False,
         "multiple_option_selection": True,
     },
@@ -1219,9 +1221,9 @@ questions_uz_latin = [
     {
         "number": 39,
         "question": "Ushbu kredit yoki qarzlarni qaysi maqsadlarda olmoqchisiz? Bir nechta variantni tanlashingiz mumkin",
-        "answers": ["uy-joy sotib olish", "avtotransport olish", "iste’mol tovarlarini olish",
-                    "kundalik xarajatlar", "davolanish", "ta’lim", "dam olish", "xus. tadbirkorlikni rivoj.",
-                    "boshqa kredit to‘lash", "to‘y marosimini o‘tkazish", "uy-joyni ta’mirlash", "boshqalar"],
+        "answers": ["uy-joy sotib olish", "avtotransport sotib olish", "iste’mol tovarlarini sotib olish",
+                    "kundalik xarajatlar", "davolanish", "ta’lim", "dam olish", "xususiy tadbirkorlikni rivojlantirish",
+                    "boshqa kreditni to‘lash", "to‘y marosimini o‘tkazish", "uy-joyni ta’mirlash", "boshqalar"],
         "has_sub_question": False,
         "multiple_option_selection": True,
     }
