@@ -72,7 +72,7 @@ jump_options_question9 = {
 
 jump_options_no = {
     "ru": ["нет", "затрудняюсь ответить", "улучшилась", "не изменилась"],
-    "uzlatin": ["yo'q", "yo`q", "javob berishim qiyin", "o‘zgarmadi", "yaxshilandi", "o`zgarmadi"],
+    "uzlatin": ["yo'q", "yo`q", "yo‘q", "javob berishim qiyin", "o‘zgarmadi", "yaxshilandi", "o`zgarmadi"],
     "uzkiril": ["йўқ", "жавоб беришим қийин", "яхшиланди", "ўзгармади"]
 }
 #
