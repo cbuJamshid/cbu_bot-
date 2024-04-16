@@ -232,7 +232,7 @@ class QuestionHandler:
         return OptionRepository.getByQuestionId(question_id)
 
     def _send_next_question_menu(self, bot: TeleBot, user_id: int, lang: str, number: int) -> None:
-        description = "Перейти следующего вопроса"
+        description = "Перейти к следующему вопросу"
         if lang == "uzlatin":
             description = "Keyingi savolga o'tish"
         elif lang == "uzkiril":
