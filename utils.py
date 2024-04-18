@@ -62,3 +62,11 @@ def send_survey_finish_message(chat_id, lang, bot: TeleBot) -> None:
 
 def send_error_message_to_user(chat_id, bot: TeleBot):
     return bot.send_message(chat_id, f"Кутилмаган хатолик! Ботимизда сўровномани бошлаш учун /start буйруғини юборинг. \n\nНеожиданная ошибка! Отправьте команду /start чтобы начать опрос на нашем боте.")
+
+def send_survey_already_done_message(chat_id, lang, bot: TeleBot) -> None:
+    if lang == "uzkiril":
+        return bot.send_message(chat_id, f"<b>Сиз сўровномамизда олдин иштирок этгансиз!</b>", parse_mode='HTML')
+    elif lang == "uzlatin":
+        return bot.send_message(chat_id, f"<b>Siz so'rovnomamizda oldin ishtiroq etgansiz!</b>", parse_mode='HTML')
+    else:
+        return bot.send_message(chat_id, f"<b>Вы уже участвовали в нашем опросе! </b>", parse_mode='HTML')

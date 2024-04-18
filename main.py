@@ -1,7 +1,7 @@
 import telebot
 from config import BOT_TOKEN
 from telebot.types import Message, CallbackQuery
-from utils import generate_markup_languages, extract_values_from_callback_data, generate_option_markup, send_error_message_to_user
+from utils import generate_markup_languages, extract_values_from_callback_data, generate_option_markup, send_error_message_to_user, send_survey_already_done_message
 from DAL.Repository.UserRepository import UserRepository
 from DAL.Repository.OptionRepository import OptionRepository
 from DAL.Repository.ResponseRepository import ResponseRepository
@@ -47,6 +47,9 @@ def handle_start_command(message: Message):
 def handle_language_change_callback(call: CallbackQuery):
     user_id = call.message.chat.id
     try:
+        user = UserRepository.get(user_id)
+        if user.is_survey_finished:
+            return send_survey_already_done_message(user_id, user.language, bot)
         UserRepository.set_language(user_id, call.data)
         UserRepository.set_question_number(user_id, 1)
         QuestionHandler.get_instance().send_question(bot, user_id)

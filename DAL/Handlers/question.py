@@ -29,13 +29,18 @@ class QuestionHandler:
             options = self._get_options(jump_question.id)
             bot.send_message(
                 user.id,
-                jump_question.title, 
+                jump_question.title,
                 reply_markup=generate_option_markup(options, jump_question.number, jump_question.id, jump_question.is_single_option)
             )
 
     def send_question(self, bot: TeleBot, user_id: int) -> None:
         user = UserRepository.get(user_id)
         question_number = user.current_question_number
+
+        # if user answered all questions, it ends survey
+        if user.current_question_number > 53:
+            UserRepository.set_is_survey_finished(user_id)
+            return send_survey_finish_message(user_id, user.language, bot)
 
         if user.current_question_number == 4:
             user_language = user.language
@@ -48,7 +53,7 @@ class QuestionHandler:
                 options = self._get_options(jump_question.id)
                 bot.send_message(
                     user.id,
-                    jump_question.title, 
+                    jump_question.title,
                     reply_markup=generate_option_markup(options, jump_question.number, jump_question.id, jump_question.is_single_option)
                 )
             self.set_user_question_number(user, 16)
@@ -91,9 +96,6 @@ class QuestionHandler:
             self.set_user_question_number(user, 34)
             return
 
-        # if user answered all questions, it ends survey
-        if user.current_question_number > 53:
-            return send_survey_finish_message(user_id, user.language, bot)
 
         # question 4 with index of 18
         q4_index = 18
@@ -194,6 +196,7 @@ class QuestionHandler:
                 option = OptionRepository.getById(r.option_id)
                 if option.option_text in jump_options_no.get(user.language):
                     self.skip_next_question(user, user.current_question_number) # increments
+                    UserRepository.set_is_survey_finished(user_id)
                     return send_survey_finish_message(user_id, user.language, bot)
 
 
