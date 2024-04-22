@@ -65,6 +65,7 @@ def handle_response_callback(call: CallbackQuery):
         user = UserRepository.get(user_id)
         if user.is_survey_finished:
             return send_survey_already_done_message(user_id, user.language, bot)
+
         question_id, question_number, option_id, is_multiple_option = extract_values_from_callback_data(
             call.data
         )
